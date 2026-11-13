@@ -2,7 +2,7 @@
 
 Compagnon de bureau **100 % local et gratuit** pour Football Manager 27. Il lit votre carrière **en direct, à l'écran**, pendant que vous jouez — sans export, sans clé API, sans Internet — puis analyse votre effectif, votre tactique, vos contrats et vos cibles de recrutement, en expliquant chaque conseil en français.
 
-> **Lecture seule.** L'assistant photographie la fenêtre du jeu et lit le texte qui s'y trouve. Il n'ouvre jamais votre sauvegarde et n'envoie rien au jeu.
+> **Votre sauvegarde n'est jamais touchée.** L'assistant photographie la fenêtre du jeu et lit le texte qui s'y trouve. Il n'envoie rien au jeu, sauf si vous lancez le **scan automatique**, qui navigue alors dans les écrans à votre place (touches de navigation, clics sur les noms, molette).
 
 ---
 
@@ -59,6 +59,15 @@ Double-cliquez sur **`installer.bat`**. Une fenêtre noire télécharge les comp
 
 Ensuite, il n'y a plus rien à faire : jouez, l'assistant met la base à jour à chaque écran que vous ouvrez. L'indicateur en bas à gauche affiche par exemple « FM 27 détecté ✓ – dernier écran lu : Effectif – 32 joueurs à jour ».
 
+### Scan automatique (sans ouvrir les écrans vous-même)
+Page **Lecture en direct → Scan automatique**. L'assistant fait défiler l'effectif, ouvre chaque profil, puis visite tactique, finances, classement et calendrier.
+
+1. Dépliez **Raccourcis du jeu** et saisissez ceux de FM 27 (dans le jeu : Préférences → Raccourcis). Le plus utile est **Joueur suivant** ; à défaut, **Retour**. Le bouton **Tester** envoie le raccourci une fois pour vérifier.
+2. Ouvrez l'écran Effectif dans FM, puis cliquez **Lancer le scan automatique** et ne touchez plus à rien.
+3. Pour arrêter : bouton **Arrêter**, ou cliquez dans une autre fenêtre (le scan s'interrompt dès que FM n'est plus au premier plan).
+
+Un écran sans raccourci n'est pas bloquant : l'assistant vous demande de l'ouvrir et reprend dès qu'il le voit. Seules des touches de navigation, des clics sur les noms de joueurs et la molette sont envoyés au jeu ; la sauvegarde n'est jamais lue ni modifiée.
+
 ### Étape 6 (facultative) — Créer le .exe
 Double-cliquez sur **`creer_exe.bat`**. Le résultat est dans `dist\FM Assistant 27\` : lancez `FM Assistant 27.exe` (gardez tout le dossier, il contient les composants).
 
@@ -102,6 +111,7 @@ Calcul d'une note : moyenne des attributs du rôle pondérée par leur poids (cl
 - **Barres d'attributs** : lecture approximative (±1), uniquement si la barre a un rail visible. **Étoiles** : seules les étoiles dorées sont comptées.
 - **Blessures** : lues uniquement si le jeu les écrit en texte dans une colonne.
 - **Repères de niveau par division** : estimations modifiables, pas des données du jeu.
+- **Scan automatique** : sa logique est testée contre un jeu simulé, mais l'envoi réel de touches à FM n'a pas pu être essayé, et les raccourcis de FM 27 sont à saisir par vous. Le fichier de sauvegarde lui-même n'est pas lu : son format est propriétaire et non documenté.
 - **OCR Windows de secours, overlay et création du .exe** : écrits mais non exécutés ici (développement hors Windows). L'OCR principal (RapidOCR) est, lui, testé.
 
 ---
@@ -140,12 +150,13 @@ fm_assistant/
     parsers.py             un parseur par écran
     calibration.py         corrections apprises
     ingest.py  watcher.py  enregistrement en base · boucle d'arrière-plan
+    autopilot.py inputs.py scan automatique · envoi de touches et de clics
   analysis/
     knowledge.py ratings.py squad.py tactics.py
     recruitment.py development.py contracts.py dashboard.py
   data/                    connaissances.json · ecrans.json · defis.json
   web/                     interface (HTML/CSS/JS sans dépendance externe)
-tests/                     27 tests, dont la chaîne OCR complète
+tests/                     34 tests, dont la chaîne OCR complète et le scan automatique (jeu simulé)
 tools/build_knowledge.py   régénère connaissances.json
 ```
 

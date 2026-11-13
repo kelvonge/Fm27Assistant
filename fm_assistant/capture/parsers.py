@@ -120,6 +120,7 @@ def parse_player_table(lines, img, kp: Knowledge4Parse, calib: Calibration, scre
             txt = calib.fix(cell.text.strip())
             if f == "name":
                 rec["name"] = _clean_name(txt)
+                rec["_box"] = [round(cell.cx), round(cell.cy)]  # où cliquer pour ouvrir le profil (scan automatique)
             elif f == "age":
                 rec["age"] = parse_int(txt, 14, 50)
             elif f == "position":

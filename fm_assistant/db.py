@@ -79,7 +79,13 @@ class Database:
 
     def update_settings(self, patch: dict) -> dict:
         s = self.settings()
-        s.update({k: v for k, v in patch.items() if k in config.DEFAULT_SETTINGS})
+        for k, v in patch.items():
+            if k not in config.DEFAULT_SETTINGS:
+                continue
+            if k == "raccourcis" and isinstance(v, dict):
+                s[k] = {**config.DEFAULT_SETTINGS[k], **(s.get(k) or {}), **{a: str(b or "") for a, b in v.items() if a in config.DEFAULT_SETTINGS[k]}}
+            else:
+                s[k] = v
         self.set_meta("settings", s)
         return s
 
@@ -152,7 +158,7 @@ class Database:
             k: v for k, v in existing.items() if k not in ("id", "name", "scope", "shortlist", "game_date", "updated_at")
         }
         for k, v in rec.items():
-            if k in ("name", "scope", "shortlist") or v is None or v == "" or v == []:
+            if k in ("name", "scope", "shortlist") or k.startswith("_") or v is None or v == "" or v == []:
                 continue
             if k in ("attributes", "attr_source") and isinstance(v, dict):
                 merged = dict(data.get(k) or {})

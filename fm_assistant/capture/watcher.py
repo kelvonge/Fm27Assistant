@@ -33,6 +33,7 @@ class Watcher:
         self.last_tokens: list = []
         self.last_parsed: dict | None = None
         self.guide_start_scan = 0
+        self.suspended = False  # vrai pendant un scan automatique (il fait ses propres captures)
         self.status = {
             "plateforme_ok": window.SUPPORTED, "etat": "arret", "fm_detecte": False, "fenetre": None,
             "resolution": None, "ocr": None, "ocr_erreurs": [], "dernier_ecran": None, "dernier_resume": None,
@@ -123,6 +124,9 @@ class Watcher:
             settings = self.db.settings()
             interval = max(0.3, float(settings.get("intervalle") or 1.0))
             try:
+                if self.suspended:
+                    time.sleep(0.5)
+                    continue
                 if not settings.get("capture_active", True) and not self._force.is_set():
                     st["etat"] = "pause"
                     time.sleep(0.8)

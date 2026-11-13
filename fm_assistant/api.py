@@ -15,6 +15,8 @@ from .analysis import contracts as contracts_mod
 from .analysis import dashboard as dashboard_mod
 from .analysis import development, ratings, recruitment, squad, tactics
 from .analysis.knowledge import KB, load_kb
+from .capture import inputs
+from .capture.autopilot import AutoScan, LiveDriver, LiveReader
 from .capture.calibration import Calibration
 from .capture.watcher import Watcher
 from .db import Database
@@ -35,6 +37,9 @@ class State:
         self.calib = Calibration()
         self.reload_knowledge()
         self.watcher = Watcher(self.db, lambda: (self.kb.raw, self.screens), self.calib)
+        reader = LiveReader(self.watcher, self.db)
+        self.autoscan = AutoScan(reader, LiveDriver(reader), self.db.settings)
+        self.autoscan.on_state = lambda active: setattr(self.watcher, "suspended", active)
         self.overlay_toggle = None  # défini par main.py quand la fenêtre desktop existe
         self.overlay_open = lambda: False
 
@@ -382,6 +387,54 @@ def create_app(state: State | None = None) -> FastAPI:
         st.watcher.guide_start_scan = st.db.last_scan_id()
         st.db.update_settings({"premier_lancement": False})
         return {"ok": True}
+
+    # ------------------------------------------------------------ scan automatique
+    @app.get("/api/autoscan")
+    def autoscan_status():
+        return {**st.autoscan.status, "disponible": inputs.SUPPORTED}
+
+    @app.post("/api/autoscan/start")
+    def autoscan_start(body: dict = Body(default={})):
+        if not inputs.SUPPORTED:
+            raise HTTPException(409, "Le scan automatique nécessite Windows.")
+        opts = {"profils": bool(body.get("profils", True))}
+        if "ecrans" in body:
+            opts["ecrans"] = [e for e in body["ecrans"] if e in ("tactique", "finances", "classement", "calendrier")]
+        if not st.autoscan.start(opts):
+            raise HTTPException(409, "Un scan automatique est déjà en cours.")
+        st.watcher.guide_start_scan = st.db.last_scan_id()
+        st.db.update_settings({"premier_lancement": False})
+        return {"ok": True}
+
+    @app.post("/api/autoscan/stop")
+    def autoscan_stop():
+        st.autoscan.stop()
+        return {"ok": True}
+
+    @app.post("/api/autoscan/test")
+    def autoscan_test(body: dict = Body(...)):
+        """Envoie un seul raccourci à FM pour vérifier qu'il fait bien ce qu'on attend."""
+        if not inputs.SUPPORTED:
+            raise HTTPException(409, "Le test de raccourci nécessite Windows.")
+        try:
+            inputs.parse_combo(body.get("touche", ""))
+        except ValueError as exc:
+            raise HTTPException(400, f"Raccourci invalide : {exc}")
+        if st.autoscan.status["actif"]:
+            raise HTTPException(409, "Un scan automatique est en cours.")
+        try:
+            st.autoscan.driver.prepare()
+            st.autoscan.driver.press(body["touche"])
+        except Exception as exc:
+            raise HTTPException(409, str(exc) or "FM n'est pas au premier plan.")
+        return {"ok": True}
+
+    @app.post("/api/autoscan/check")
+    def autoscan_check(body: dict = Body(...)):
+        try:
+            return {"touches": inputs.parse_combo(body.get("touche", ""))}
+        except ValueError as exc:
+            raise HTTPException(400, f"Raccourci invalide : {exc}")
 
     # ------------------------------------------------------------ overlay
     @app.get("/api/overlay")

@@ -24,6 +24,9 @@ DEFAULT_SETTINGS = {
     "capture_active": True,
     "premier_lancement": True,
     "modele_chat": "",
+    # Scan automatique : raccourcis du jeu (vides = l'assistant demande d'ouvrir l'écran à la main)
+    "raccourcis": {"suivant": "", "retour": "", "effectif": "", "tactique": "", "finances": "", "classement": "", "calendrier": ""},
+    "delai_auto": 0.8,  # secondes laissées au jeu après chaque action
 }
 
 

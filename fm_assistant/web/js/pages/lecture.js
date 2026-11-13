@@ -8,7 +8,7 @@ const ETAT = { actif: ['Lecture active', 'good'], arriere_plan: ['Jeu en arrièr
 let showBoxes = true;
 
 export async function render(root, ctx) {
-  const [last, guide, scans, settings] = await Promise.all([api.get('/api/capture/last'), api.get('/api/scan-guide'), api.get('/api/scans'), api.get('/api/settings')]);
+  const [last, guide, scans, settings, auto] = await Promise.all([api.get('/api/capture/last'), api.get('/api/scan-guide'), api.get('/api/scans'), api.get('/api/settings'), api.get('/api/autoscan')]);
   const st = ctx.status || await api.get('/api/status');
   const act = async (fn, msg) => { try { await fn(); if (msg) toast(msg); ctx.refresh(); } catch (e) { toast(e.message, true); } };
 
@@ -62,6 +62,8 @@ export async function render(root, ctx) {
       h('span', { class: 'small muted' }, 'Ensuite, rien à faire : chaque écran que vous ouvrez en jouant met la base à jour.')));
   root.append(h('div', { class: 'grid g2', style: { marginBottom: '16px' } }, statusCard, guideCard));
 
+  root.append(autoScanCard(settings, auto, ctx));
+
   // ---- Calibrage : ce que j'ai lu
   root.append(calibration(last, st, act));
 
@@ -114,4 +116,52 @@ function calibration(last, st, act) {
       Object.keys(cal.remplacements || {}).length ? h('div', { class: 'row small', style: { marginTop: '8px' } }, h('span', { class: 'muted' }, 'Corrections de texte :'), Object.entries(cal.remplacements).map(([k, v]) => h('span', { class: 'chip on click', title: 'Cliquer pour supprimer', onclick: () => correct({ type: 'texte', lu: k, correct: '' }, 'Correction supprimée') }, `${k} → ${v} ✕`))) : null));
   return h('div', { class: 'card' }, h('h2', {}, 'Calibrage — ce que j\'ai lu', h('label', { class: 'right small', style: { cursor: 'pointer' } }, h('input', { type: 'checkbox', checked: showBoxes, onchange: (e) => { showBoxes = e.target.checked; drawBoxes(); } }), ' montrer les textes reconnus')),
     shot, h('div', { class: 'small muted', style: { margin: '6px 0 16px' } }, `Capture ${img.w} × ${img.h} — cadre vert : texte lu, cadre orange : lecture incertaine. Survolez un cadre pour voir le texte reconnu.`), right);
+}
+
+// ---- Scan automatique : l'assistant parcourt lui-même les écrans du jeu
+const RACCOURCIS = [
+  ['suivant', 'Joueur suivant (dans un profil)', 'Le plus rapide : passe d\'un profil au suivant'],
+  ['retour', 'Retour à l\'écran précédent', 'Utilisé si « joueur suivant » est vide : clic sur chaque nom puis retour'],
+  ['effectif', 'Ouvrir Effectif', ''], ['tactique', 'Ouvrir Tactique', ''], ['finances', 'Ouvrir Finances', ''],
+  ['classement', 'Ouvrir Classement', ''], ['calendrier', 'Ouvrir Calendrier', ''],
+];
+function autoScanCard(settings, auto, ctx) {
+  const keys = { ...(settings.raccourcis || {}) };
+  const box = h('div');
+  let timer = null;
+  const draw = (a) => {
+    const pct = a.total ? Math.min(100, Math.round(a.profils / a.total * 100)) : 0;
+    box.replaceChildren(
+      a.actif ? h('div', { class: 'row', style: { marginBottom: '8px' } }, tag('en cours', 'good'), h('b', {}, a.message)) : (a.message ? h('div', { class: `alert ${a.erreur ? 'rouge' : ''}`, style: { marginBottom: '8px' } }, a.message) : null),
+      a.actif || a.termine ? h('div', { class: 'small muted', style: { marginBottom: '6px' } }, `${a.joueurs} joueur(s) dans la liste · ${a.profils} profil(s) lu(s)${a.total ? ' sur ' + a.total : ''} · écrans : ${a.ecrans.length ? a.ecrans.join(', ') : 'aucun pour l\'instant'}`) : null,
+      a.actif ? h('div', { class: 'bar', style: { marginBottom: '10px' } }, h('i', { style: { width: pct + '%' } })) : null,
+      a.journal.length ? h('details', { open: a.actif }, h('summary', { class: 'small muted', style: { cursor: 'pointer' } }, 'Détail du déroulement'), h('ul', { class: 'clean small muted' }, a.journal.map(l => h('li', {}, l)))) : null);
+    startBtn.disabled = a.actif || !a.disponible; stopBtn.hidden = !a.actif;
+  };
+  const poll = async () => { if (!box.isConnected) { clearInterval(timer); return; } try { const a = await api.get('/api/autoscan'); draw(a); if (!a.actif) { clearInterval(timer); timer = null; if (a.termine) ctx.refresh(); } } catch (e) { /* prochaine tentative */ } };
+  const startBtn = h('button', { class: 'btn', onclick: async () => {
+    try { await api.post('/api/autoscan/start', { profils: profils.checked, ecrans: ecrans.checked ? undefined : [] }); toast('Scan lancé : ne touchez plus à la souris ni au clavier. Pour arrêter, cliquez dans une autre fenêtre.'); if (!timer) timer = setInterval(poll, 1000); poll(); }
+    catch (e) { toast(e.message, true); } } }, '▶ Lancer le scan automatique');
+  const stopBtn = h('button', { class: 'btn danger', hidden: true, onclick: () => api.post('/api/autoscan/stop') }, 'Arrêter');
+  const profils = h('input', { type: 'checkbox', checked: true }), ecrans = h('input', { type: 'checkbox', checked: true });
+  const field = ([k, label, hint]) => {
+    const inp = h('input', { class: 'input', value: keys[k] || '', placeholder: 'non défini', style: { width: '150px' }, onchange: async (e) => {
+      const v = e.target.value.trim();
+      try { if (v) await api.post('/api/autoscan/check', { touche: v }); await ctx.setSettings({ raccourcis: { [k]: v } }); keys[k] = v; toast(v ? 'Raccourci enregistré' : 'Raccourci effacé'); }
+      catch (err) { toast(err.message, true); } } });
+    return h('label', { class: 'field', title: hint }, label, h('div', { class: 'row', style: { flexWrap: 'nowrap', gap: '6px' } }, inp,
+      h('button', { class: 'btn ghost small', disabled: !auto.disponible, title: 'Envoie ce raccourci à FM une seule fois, pour vérifier qu\'il fait bien ce qui est attendu', onclick: async () => { if (!inp.value.trim()) return toast('Saisissez d\'abord un raccourci.', true); try { await api.post('/api/autoscan/test', { touche: inp.value.trim() }); toast('Raccourci envoyé à FM : regardez si le jeu a réagi comme prévu.'); } catch (e) { toast(e.message, true); } } }, 'Tester')));
+  };
+  draw(auto);
+  if (auto.actif) timer = setInterval(poll, 1000);
+  return h('div', { class: 'card', style: { marginBottom: '16px' } },
+    h('h2', {}, 'Scan automatique', h('span', { class: 'right' }, auto.disponible ? null : tag('Windows uniquement', 'mid'))),
+    h('p', { class: 'muted', style: { marginTop: 0 } }, 'L\'assistant fait défiler votre effectif, ouvre chaque profil puis visite les autres écrans à votre place. Il n\'envoie au jeu que des touches de navigation, des clics sur les noms et la molette : votre sauvegarde n\'est pas modifiée. Le scan s\'arrête tout seul si FM n\'est plus au premier plan.'),
+    h('div', { class: 'row', style: { marginBottom: '12px' } }, startBtn, stopBtn,
+      h('label', { class: 'small', style: { cursor: 'pointer' } }, profils, ' ouvrir les profils (attributs)'), h('label', { class: 'small', style: { cursor: 'pointer' } }, ecrans, ' tactique, finances, classement, calendrier')),
+    box,
+    h('details', { open: !keys.suivant && !keys.retour, style: { marginTop: '12px' } }, h('summary', { style: { cursor: 'pointer', fontWeight: 600 } }, 'Raccourcis du jeu'),
+      h('p', { class: 'small muted' }, 'Indiquez les raccourcis clavier de FM (menu Préférences → Raccourcis du jeu). Exemples de saisie : ', h('code', {}, 'f6'), ', ', h('code', {}, 'ctrl+p'), ', ', h('code', {}, 'alt+gauche'), ', ', h('code', {}, 'souris_precedent'), ' (bouton latéral de la souris). Sans « joueur suivant » ni « retour », seule la liste est lue. Un écran sans raccourci n\'est pas bloquant : l\'assistant vous demande de l\'ouvrir et reprend dès qu\'il le voit.'),
+      h('div', { class: 'toolbar', style: { alignItems: 'flex-end' } }, RACCOURCIS.map(field),
+        h('label', { class: 'field', title: 'Temps laissé au jeu pour afficher l\'écran après chaque action' }, 'Pause après action (s)', h('input', { class: 'input', type: 'number', min: 0.2, max: 5, step: 0.1, value: settings.delai_auto, style: { width: '90px' }, onchange: (e) => ctx.setSettings({ delai_auto: Number(e.target.value) || 0.8 }) })))));
 }
