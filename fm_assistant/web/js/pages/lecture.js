@@ -28,7 +28,7 @@ export async function render(root, ctx) {
   const statusBox = h('div');
   const drawStatus = (s) => {
     const [label, cls] = ETAT[s.etat] || [s.etat, ''];
-    statusBox.replaceChildren(
+    statusBox.replaceChildren(...[
       h('div', { class: 'row', style: { marginBottom: '8px' } }, tag(label, cls), s.demo ? tag('données de démonstration chargées', 'info') : null),
       h('div', { class: 'status-big' }, s.message),
       h('dl', { class: 'kv', style: { marginTop: '12px' } },
@@ -41,7 +41,7 @@ export async function render(root, ctx) {
       s.erreur && s.etat !== 'indisponible' ? h('div', { class: 'alert rouge', style: { marginTop: '10px' } }, s.erreur) : null,
       ...(s.ocr_erreurs || []).map(e => h('div', { class: 'alert rouge', style: { marginTop: '8px' } }, 'Moteur OCR indisponible — ' + e)),
       ...(s.avertissements || []).map(w => h('div', { class: 'alert orange', style: { marginTop: '8px' } }, w)),
-      ...(s.avertissements_fichiers || []).map(w => h('div', { class: 'alert orange', style: { marginTop: '8px' } }, w)));
+      ...(s.avertissements_fichiers || []).map(w => h('div', { class: 'alert orange', style: { marginTop: '8px' } }, w))].filter(Boolean));
   };
   drawStatus(st);
   const onStatus = (e) => { if (statusBox.isConnected) drawStatus(e.detail); else document.removeEventListener('fma:status', onStatus); };
@@ -131,11 +131,11 @@ function autoScanCard(settings, auto, ctx) {
   let timer = null;
   const draw = (a) => {
     const pct = a.total ? Math.min(100, Math.round(a.profils / a.total * 100)) : 0;
-    box.replaceChildren(
+    box.replaceChildren(...[
       a.actif ? h('div', { class: 'row', style: { marginBottom: '8px' } }, tag('en cours', 'good'), h('b', {}, a.message)) : (a.message ? h('div', { class: `alert ${a.erreur ? 'rouge' : ''}`, style: { marginBottom: '8px' } }, a.message) : null),
       a.actif || a.termine ? h('div', { class: 'small muted', style: { marginBottom: '6px' } }, `${a.joueurs} joueur(s) dans la liste · ${a.profils} profil(s) lu(s)${a.total ? ' sur ' + a.total : ''} · écrans : ${a.ecrans.length ? a.ecrans.join(', ') : 'aucun pour l\'instant'}`) : null,
       a.actif ? h('div', { class: 'bar', style: { marginBottom: '10px' } }, h('i', { style: { width: pct + '%' } })) : null,
-      a.journal.length ? h('details', { open: a.actif }, h('summary', { class: 'small muted', style: { cursor: 'pointer' } }, 'Détail du déroulement'), h('ul', { class: 'clean small muted' }, a.journal.map(l => h('li', {}, l)))) : null);
+      a.journal.length ? h('details', { open: a.actif }, h('summary', { class: 'small muted', style: { cursor: 'pointer' } }, 'Détail du déroulement'), h('ul', { class: 'clean small muted' }, a.journal.map(l => h('li', {}, l)))) : null].filter(Boolean));
     startBtn.disabled = a.actif || !a.disponible; stopBtn.hidden = !a.actif;
   };
   const poll = async () => { if (!box.isConnected) { clearInterval(timer); return; } try { const a = await api.get('/api/autoscan'); draw(a); if (!a.actif) { clearInterval(timer); timer = null; if (a.termine) ctx.refresh(); } } catch (e) { /* prochaine tentative */ } };
