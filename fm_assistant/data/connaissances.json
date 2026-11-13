@@ -1,0 +1,3056 @@
+{
+ "_aide": "Fichier éditable. 'poids_defaut' fixe le poids des attributs clés et secondaires ; chaque rôle peut surcharger un attribut via son champ 'poids' (ex. {\"passing\": 5}). Les noms de rôles peuvent être adaptés à votre version du jeu.",
+ "version": 1,
+ "poids_defaut": {
+  "cle": 3.0,
+  "secondaire": 1.5
+ },
+ "couverture_minimale": 0.6,
+ "attributs": [
+  {
+   "id": "corners",
+   "nom": "Corners",
+   "en": "Corners",
+   "categorie": "technique",
+   "alias": []
+  },
+  {
+   "id": "crossing",
+   "nom": "Centres",
+   "en": "Crossing",
+   "categorie": "technique",
+   "alias": []
+  },
+  {
+   "id": "dribbling",
+   "nom": "Dribbles",
+   "en": "Dribbling",
+   "categorie": "technique",
+   "alias": [
+    "Dribble"
+   ]
+  },
+  {
+   "id": "finishing",
+   "nom": "Finition",
+   "en": "Finishing",
+   "categorie": "technique",
+   "alias": []
+  },
+  {
+   "id": "first_touch",
+   "nom": "Contrôle de balle",
+   "en": "First Touch",
+   "categorie": "technique",
+   "alias": [
+    "Première touche",
+    "Contrôle"
+   ]
+  },
+  {
+   "id": "free_kicks",
+   "nom": "Coups francs",
+   "en": "Free Kick Taking",
+   "categorie": "technique",
+   "alias": [
+    "Free Kicks",
+    "Coup franc"
+   ]
+  },
+  {
+   "id": "heading",
+   "nom": "Jeu de tête",
+   "en": "Heading",
+   "categorie": "technique",
+   "alias": [
+    "Tête"
+   ]
+  },
+  {
+   "id": "long_shots",
+   "nom": "Tirs de loin",
+   "en": "Long Shots",
+   "categorie": "technique",
+   "alias": []
+  },
+  {
+   "id": "long_throws",
+   "nom": "Touches longues",
+   "en": "Long Throws",
+   "categorie": "technique",
+   "alias": []
+  },
+  {
+   "id": "marking",
+   "nom": "Marquage",
+   "en": "Marking",
+   "categorie": "technique",
+   "alias": []
+  },
+  {
+   "id": "passing",
+   "nom": "Passes",
+   "en": "Passing",
+   "categorie": "technique",
+   "alias": [
+    "Passe"
+   ]
+  },
+  {
+   "id": "penalties",
+   "nom": "Penalty",
+   "en": "Penalty Taking",
+   "categorie": "technique",
+   "alias": [
+    "Penaltys",
+    "Penalties",
+    "Pénaltys"
+   ]
+  },
+  {
+   "id": "tackling",
+   "nom": "Tacles",
+   "en": "Tackling",
+   "categorie": "technique",
+   "alias": [
+    "Tacle"
+   ]
+  },
+  {
+   "id": "technique",
+   "nom": "Technique",
+   "en": "Technique",
+   "categorie": "technique",
+   "alias": []
+  },
+  {
+   "id": "aggression",
+   "nom": "Agressivité",
+   "en": "Aggression",
+   "categorie": "mental",
+   "alias": []
+  },
+  {
+   "id": "anticipation",
+   "nom": "Anticipation",
+   "en": "Anticipation",
+   "categorie": "mental",
+   "alias": []
+  },
+  {
+   "id": "bravery",
+   "nom": "Courage",
+   "en": "Bravery",
+   "categorie": "mental",
+   "alias": []
+  },
+  {
+   "id": "composure",
+   "nom": "Sang-froid",
+   "en": "Composure",
+   "categorie": "mental",
+   "alias": [
+    "Sang froid"
+   ]
+  },
+  {
+   "id": "concentration",
+   "nom": "Concentration",
+   "en": "Concentration",
+   "categorie": "mental",
+   "alias": []
+  },
+  {
+   "id": "decisions",
+   "nom": "Décisions",
+   "en": "Decisions",
+   "categorie": "mental",
+   "alias": [
+    "Prise de décision"
+   ]
+  },
+  {
+   "id": "determination",
+   "nom": "Détermination",
+   "en": "Determination",
+   "categorie": "mental",
+   "alias": []
+  },
+  {
+   "id": "flair",
+   "nom": "Inspiration",
+   "en": "Flair",
+   "categorie": "mental",
+   "alias": [
+    "Créativité"
+   ]
+  },
+  {
+   "id": "leadership",
+   "nom": "Leadership",
+   "en": "Leadership",
+   "categorie": "mental",
+   "alias": [
+    "Charisme"
+   ]
+  },
+  {
+   "id": "off_the_ball",
+   "nom": "Appels de balle",
+   "en": "Off The Ball",
+   "categorie": "mental",
+   "alias": [
+    "Jeu sans ballon",
+    "Sans ballon"
+   ]
+  },
+  {
+   "id": "positioning",
+   "nom": "Placement",
+   "en": "Positioning",
+   "categorie": "mental",
+   "alias": []
+  },
+  {
+   "id": "teamwork",
+   "nom": "Jeu collectif",
+   "en": "Teamwork",
+   "categorie": "mental",
+   "alias": [
+    "Collectif",
+    "Travail d'équipe"
+   ]
+  },
+  {
+   "id": "vision",
+   "nom": "Vision du jeu",
+   "en": "Vision",
+   "categorie": "mental",
+   "alias": []
+  },
+  {
+   "id": "work_rate",
+   "nom": "Volume de jeu",
+   "en": "Work Rate",
+   "categorie": "mental",
+   "alias": [
+    "Activité"
+   ]
+  },
+  {
+   "id": "acceleration",
+   "nom": "Accélération",
+   "en": "Acceleration",
+   "categorie": "physique",
+   "alias": []
+  },
+  {
+   "id": "agility",
+   "nom": "Agilité",
+   "en": "Agility",
+   "categorie": "physique",
+   "alias": []
+  },
+  {
+   "id": "balance",
+   "nom": "Équilibre",
+   "en": "Balance",
+   "categorie": "physique",
+   "alias": []
+  },
+  {
+   "id": "jumping",
+   "nom": "Détente verticale",
+   "en": "Jumping Reach",
+   "categorie": "physique",
+   "alias": [
+    "Détente",
+    "Jumping"
+   ]
+  },
+  {
+   "id": "natural_fitness",
+   "nom": "Qualités physiques naturelles",
+   "en": "Natural Fitness",
+   "categorie": "physique",
+   "alias": [
+    "Qual. phys. nat.",
+    "Physique naturel"
+   ]
+  },
+  {
+   "id": "pace",
+   "nom": "Vitesse",
+   "en": "Pace",
+   "categorie": "physique",
+   "alias": []
+  },
+  {
+   "id": "stamina",
+   "nom": "Endurance",
+   "en": "Stamina",
+   "categorie": "physique",
+   "alias": []
+  },
+  {
+   "id": "strength",
+   "nom": "Puissance",
+   "en": "Strength",
+   "categorie": "physique",
+   "alias": [
+    "Force"
+   ]
+  },
+  {
+   "id": "aerial_reach",
+   "nom": "Jeu aérien",
+   "en": "Aerial Reach",
+   "categorie": "gardien",
+   "alias": [
+    "Sorties aériennes",
+    "Allonge"
+   ]
+  },
+  {
+   "id": "command_of_area",
+   "nom": "Autorité dans la surface",
+   "en": "Command Of Area",
+   "categorie": "gardien",
+   "alias": [
+    "Présence dans la surface",
+    "Domination de la surface"
+   ]
+  },
+  {
+   "id": "communication",
+   "nom": "Communication",
+   "en": "Communication",
+   "categorie": "gardien",
+   "alias": []
+  },
+  {
+   "id": "eccentricity",
+   "nom": "Excentricité",
+   "en": "Eccentricity",
+   "categorie": "gardien",
+   "alias": []
+  },
+  {
+   "id": "handling",
+   "nom": "Prises de balle",
+   "en": "Handling",
+   "categorie": "gardien",
+   "alias": [
+    "Prise de balle"
+   ]
+  },
+  {
+   "id": "kicking",
+   "nom": "Dégagements",
+   "en": "Kicking",
+   "categorie": "gardien",
+   "alias": [
+    "Jeu au pied",
+    "Dégagement"
+   ]
+  },
+  {
+   "id": "one_on_ones",
+   "nom": "Un contre un",
+   "en": "One On Ones",
+   "categorie": "gardien",
+   "alias": [
+    "Face à face",
+    "1 contre 1"
+   ]
+  },
+  {
+   "id": "punching",
+   "nom": "Tendance à boxer",
+   "en": "Punching (Tendency)",
+   "categorie": "gardien",
+   "alias": [
+    "Boxer le ballon",
+    "Punching"
+   ]
+  },
+  {
+   "id": "reflexes",
+   "nom": "Réflexes",
+   "en": "Reflexes",
+   "categorie": "gardien",
+   "alias": []
+  },
+  {
+   "id": "rushing_out",
+   "nom": "Sorties",
+   "en": "Rushing Out (Tendency)",
+   "categorie": "gardien",
+   "alias": [
+    "Tendance à sortir",
+    "Rushing Out"
+   ]
+  },
+  {
+   "id": "throwing",
+   "nom": "Relances à la main",
+   "en": "Throwing",
+   "categorie": "gardien",
+   "alias": [
+    "Relances"
+   ]
+  }
+ ],
+ "postes": {
+  "GK": "GB",
+  "DR": "DD",
+  "DL": "DG",
+  "DC": "DC",
+  "WBR": "LD",
+  "WBL": "LG",
+  "DM": "MDC",
+  "MC": "MC",
+  "MR": "MD",
+  "ML": "MG",
+  "AMR": "MOD",
+  "AML": "MOG",
+  "AMC": "MOC",
+  "ST": "BU"
+ },
+ "postes_noms": {
+  "GK": "Gardien",
+  "DR": "Défenseur droit",
+  "DL": "Défenseur gauche",
+  "DC": "Défenseur central",
+  "WBR": "Latéral droit",
+  "WBL": "Latéral gauche",
+  "DM": "Milieu défensif",
+  "MC": "Milieu central",
+  "MR": "Milieu droit",
+  "ML": "Milieu gauche",
+  "AMR": "Ailier droit",
+  "AML": "Ailier gauche",
+  "AMC": "Milieu offensif axial",
+  "ST": "Attaquant"
+ },
+ "postes_proches": {
+  "DR": [
+   "WBR"
+  ],
+  "WBR": [
+   "DR",
+   "MR"
+  ],
+  "DL": [
+   "WBL"
+  ],
+  "WBL": [
+   "DL",
+   "ML"
+  ],
+  "DM": [
+   "MC",
+   "DC"
+  ],
+  "MC": [
+   "DM",
+   "AMC"
+  ],
+  "AMC": [
+   "MC",
+   "ST"
+  ],
+  "MR": [
+   "AMR",
+   "WBR"
+  ],
+  "AMR": [
+   "MR"
+  ],
+  "ML": [
+   "AML",
+   "WBL"
+  ],
+  "AML": [
+   "ML"
+  ],
+  "ST": [
+   "AMC"
+  ],
+  "DC": [
+   "DM"
+  ]
+ },
+ "malus_poste_proche": 0.88,
+ "roles": [
+  {
+   "id": "gardien",
+   "nom": "Gardien de but",
+   "en": "Goalkeeper",
+   "postes": [
+    "GK"
+   ],
+   "cles": [
+    "reflexes",
+    "handling",
+    "positioning",
+    "one_on_ones",
+    "aerial_reach",
+    "command_of_area",
+    "concentration"
+   ],
+   "secondaires": [
+    "communication",
+    "kicking",
+    "throwing",
+    "anticipation",
+    "decisions",
+    "agility"
+   ],
+   "poids": {},
+   "description": "Gardien classique qui reste sur sa ligne et sécurise sa surface."
+  },
+  {
+   "id": "gardien_libero",
+   "nom": "Gardien libéro",
+   "en": "Sweeper Keeper",
+   "postes": [
+    "GK"
+   ],
+   "cles": [
+    "reflexes",
+    "one_on_ones",
+    "rushing_out",
+    "anticipation",
+    "command_of_area",
+    "kicking",
+    "first_touch",
+    "passing"
+   ],
+   "secondaires": [
+    "handling",
+    "positioning",
+    "composure",
+    "concentration",
+    "decisions",
+    "acceleration",
+    "agility",
+    "throwing",
+    "vision"
+   ],
+   "poids": {},
+   "description": "Gardien qui sort loin de son but et participe à la relance. Indispensable avec une ligne haute."
+  },
+  {
+   "id": "defenseur_central",
+   "nom": "Défenseur central",
+   "en": "Central Defender",
+   "postes": [
+    "DC"
+   ],
+   "cles": [
+    "heading",
+    "marking",
+    "tackling",
+    "positioning",
+    "jumping",
+    "strength"
+   ],
+   "secondaires": [
+    "anticipation",
+    "concentration",
+    "decisions",
+    "bravery",
+    "composure",
+    "pace",
+    "aggression"
+   ],
+   "poids": {},
+   "description": "Défenseur axial polyvalent."
+  },
+  {
+   "id": "defenseur_relanceur",
+   "nom": "Défenseur relanceur",
+   "en": "Ball-Playing Defender",
+   "postes": [
+    "DC"
+   ],
+   "cles": [
+    "heading",
+    "marking",
+    "tackling",
+    "positioning",
+    "passing",
+    "composure",
+    "jumping",
+    "strength"
+   ],
+   "secondaires": [
+    "first_touch",
+    "technique",
+    "vision",
+    "anticipation",
+    "decisions",
+    "concentration",
+    "pace",
+    "bravery"
+   ],
+   "poids": {},
+   "description": "Défenseur axial chargé de lancer le jeu par des passes propres."
+  },
+  {
+   "id": "defenseur_strict",
+   "nom": "Défenseur strict",
+   "en": "No-Nonsense Centre-Back",
+   "postes": [
+    "DC"
+   ],
+   "cles": [
+    "heading",
+    "marking",
+    "tackling",
+    "positioning",
+    "jumping",
+    "strength",
+    "bravery"
+   ],
+   "secondaires": [
+    "anticipation",
+    "concentration",
+    "aggression",
+    "pace"
+   ],
+   "poids": {},
+   "description": "Défenseur qui dégage sans prendre de risque."
+  },
+  {
+   "id": "libero",
+   "nom": "Libéro",
+   "en": "Libero",
+   "postes": [
+    "DC"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "technique",
+    "composure",
+    "decisions",
+    "positioning",
+    "tackling",
+    "anticipation",
+    "marking",
+    "heading"
+   ],
+   "secondaires": [
+    "vision",
+    "dribbling",
+    "teamwork",
+    "concentration",
+    "jumping",
+    "strength",
+    "pace",
+    "stamina"
+   ],
+   "poids": {},
+   "description": "Défenseur libre qui monte au milieu en phase de possession."
+  },
+  {
+   "id": "defenseur_central_excentre",
+   "nom": "Défenseur central excentré",
+   "en": "Wide Centre-Back",
+   "postes": [
+    "DC"
+   ],
+   "cles": [
+    "heading",
+    "marking",
+    "tackling",
+    "positioning",
+    "strength",
+    "jumping",
+    "pace"
+   ],
+   "secondaires": [
+    "crossing",
+    "dribbling",
+    "passing",
+    "stamina",
+    "work_rate",
+    "anticipation",
+    "concentration",
+    "decisions",
+    "agility"
+   ],
+   "poids": {},
+   "description": "Axial d'une défense à trois qui s'écarte et accompagne le couloir."
+  },
+  {
+   "id": "arriere_lateral",
+   "nom": "Arrière latéral",
+   "en": "Full-Back",
+   "postes": [
+    "DR",
+    "DL"
+   ],
+   "cles": [
+    "marking",
+    "tackling",
+    "positioning",
+    "anticipation",
+    "concentration",
+    "teamwork",
+    "stamina",
+    "pace"
+   ],
+   "secondaires": [
+    "crossing",
+    "passing",
+    "work_rate",
+    "decisions",
+    "acceleration",
+    "first_touch"
+   ],
+   "poids": {},
+   "description": "Latéral équilibré entre défense et soutien."
+  },
+  {
+   "id": "arriere_lateral_strict",
+   "nom": "Arrière latéral strict",
+   "en": "No-Nonsense Full-Back",
+   "postes": [
+    "DR",
+    "DL"
+   ],
+   "cles": [
+    "marking",
+    "tackling",
+    "positioning",
+    "strength",
+    "anticipation",
+    "concentration"
+   ],
+   "secondaires": [
+    "heading",
+    "bravery",
+    "aggression",
+    "teamwork",
+    "pace"
+   ],
+   "poids": {},
+   "description": "Latéral purement défensif."
+  },
+  {
+   "id": "arriere_lateral_interieur",
+   "nom": "Arrière latéral intérieur",
+   "en": "Inverted Full-Back",
+   "postes": [
+    "DR",
+    "DL"
+   ],
+   "cles": [
+    "heading",
+    "marking",
+    "tackling",
+    "positioning",
+    "strength",
+    "anticipation"
+   ],
+   "secondaires": [
+    "passing",
+    "first_touch",
+    "composure",
+    "concentration",
+    "decisions",
+    "pace",
+    "jumping",
+    "agility"
+   ],
+   "poids": {},
+   "description": "Latéral qui rentre former une défense à trois en possession."
+  },
+  {
+   "id": "lateral_offensif",
+   "nom": "Latéral offensif",
+   "en": "Wing-Back",
+   "postes": [
+    "DR",
+    "DL",
+    "WBR",
+    "WBL"
+   ],
+   "cles": [
+    "crossing",
+    "dribbling",
+    "tackling",
+    "marking",
+    "stamina",
+    "work_rate",
+    "acceleration",
+    "pace",
+    "teamwork"
+   ],
+   "secondaires": [
+    "passing",
+    "first_touch",
+    "technique",
+    "off_the_ball",
+    "positioning",
+    "anticipation",
+    "decisions",
+    "concentration",
+    "agility",
+    "balance"
+   ],
+   "poids": {},
+   "description": "Latéral qui occupe tout le couloir."
+  },
+  {
+   "id": "lateral_complet",
+   "nom": "Latéral complet",
+   "en": "Complete Wing-Back",
+   "postes": [
+    "DR",
+    "DL",
+    "WBR",
+    "WBL"
+   ],
+   "cles": [
+    "crossing",
+    "dribbling",
+    "technique",
+    "first_touch",
+    "off_the_ball",
+    "stamina",
+    "work_rate",
+    "acceleration",
+    "pace",
+    "teamwork"
+   ],
+   "secondaires": [
+    "passing",
+    "tackling",
+    "marking",
+    "flair",
+    "decisions",
+    "anticipation",
+    "positioning",
+    "agility",
+    "balance"
+   ],
+   "poids": {},
+   "description": "Latéral très offensif, quasi-ailier."
+  },
+  {
+   "id": "lateral_inverse",
+   "nom": "Latéral inversé",
+   "en": "Inverted Wing-Back",
+   "postes": [
+    "DR",
+    "DL",
+    "WBR",
+    "WBL"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "tackling",
+    "decisions",
+    "positioning",
+    "teamwork",
+    "composure"
+   ],
+   "secondaires": [
+    "technique",
+    "marking",
+    "vision",
+    "anticipation",
+    "concentration",
+    "work_rate",
+    "stamina",
+    "acceleration",
+    "agility"
+   ],
+   "poids": {},
+   "description": "Latéral qui rentre au milieu en possession."
+  },
+  {
+   "id": "milieu_defensif",
+   "nom": "Milieu défensif",
+   "en": "Defensive Midfielder",
+   "postes": [
+    "DM"
+   ],
+   "cles": [
+    "tackling",
+    "positioning",
+    "anticipation",
+    "concentration",
+    "teamwork",
+    "decisions"
+   ],
+   "secondaires": [
+    "marking",
+    "passing",
+    "first_touch",
+    "composure",
+    "work_rate",
+    "stamina",
+    "strength",
+    "aggression"
+   ],
+   "poids": {},
+   "description": "Milieu qui protège la défense."
+  },
+  {
+   "id": "sentinelle",
+   "nom": "Sentinelle",
+   "en": "Anchor",
+   "postes": [
+    "DM"
+   ],
+   "cles": [
+    "marking",
+    "tackling",
+    "positioning",
+    "anticipation",
+    "concentration",
+    "decisions"
+   ],
+   "secondaires": [
+    "composure",
+    "teamwork",
+    "strength",
+    "heading"
+   ],
+   "poids": {},
+   "description": "Milieu fixe devant la défense, ne quitte jamais sa zone."
+  },
+  {
+   "id": "demi_centre",
+   "nom": "Demi-centre",
+   "en": "Half-Back",
+   "postes": [
+    "DM"
+   ],
+   "cles": [
+    "marking",
+    "tackling",
+    "positioning",
+    "anticipation",
+    "concentration",
+    "decisions",
+    "composure",
+    "teamwork"
+   ],
+   "secondaires": [
+    "passing",
+    "first_touch",
+    "heading",
+    "strength",
+    "jumping",
+    "stamina",
+    "work_rate",
+    "bravery",
+    "aggression"
+   ],
+   "poids": {},
+   "description": "Milieu qui redescend entre les centraux en possession."
+  },
+  {
+   "id": "milieu_recuperateur",
+   "nom": "Milieu récupérateur",
+   "en": "Ball-Winning Midfielder",
+   "postes": [
+    "DM",
+    "MC"
+   ],
+   "cles": [
+    "tackling",
+    "aggression",
+    "anticipation",
+    "work_rate",
+    "stamina",
+    "teamwork",
+    "bravery"
+   ],
+   "secondaires": [
+    "marking",
+    "positioning",
+    "concentration",
+    "decisions",
+    "strength",
+    "pace",
+    "agility",
+    "passing"
+   ],
+   "poids": {},
+   "description": "Milieu qui harcèle le porteur pour récupérer le ballon."
+  },
+  {
+   "id": "meneur_recule",
+   "nom": "Meneur de jeu reculé",
+   "en": "Deep-Lying Playmaker",
+   "postes": [
+    "DM",
+    "MC"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "technique",
+    "vision",
+    "composure",
+    "decisions",
+    "teamwork"
+   ],
+   "secondaires": [
+    "anticipation",
+    "positioning",
+    "balance",
+    "off_the_ball",
+    "tackling",
+    "concentration"
+   ],
+   "poids": {},
+   "description": "Organisateur placé bas, oriente le jeu par ses passes."
+  },
+  {
+   "id": "regista",
+   "nom": "Regista",
+   "en": "Regista",
+   "postes": [
+    "DM"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "technique",
+    "vision",
+    "composure",
+    "decisions",
+    "flair",
+    "off_the_ball",
+    "teamwork"
+   ],
+   "secondaires": [
+    "anticipation",
+    "dribbling",
+    "long_shots",
+    "balance"
+   ],
+   "poids": {},
+   "description": "Meneur reculé totalement libre, cœur créatif de l'équipe."
+  },
+  {
+   "id": "volante",
+   "nom": "Volante",
+   "en": "Segundo Volante",
+   "postes": [
+    "DM"
+   ],
+   "cles": [
+    "tackling",
+    "marking",
+    "positioning",
+    "passing",
+    "off_the_ball",
+    "work_rate",
+    "stamina",
+    "pace"
+   ],
+   "secondaires": [
+    "finishing",
+    "long_shots",
+    "first_touch",
+    "anticipation",
+    "decisions",
+    "concentration",
+    "composure",
+    "strength",
+    "acceleration",
+    "balance"
+   ],
+   "poids": {},
+   "description": "Milieu défensif qui se projette jusque dans la surface."
+  },
+  {
+   "id": "meneur_libre",
+   "nom": "Meneur de jeu libre",
+   "en": "Roaming Playmaker",
+   "postes": [
+    "DM",
+    "MC"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "technique",
+    "vision",
+    "composure",
+    "decisions",
+    "off_the_ball",
+    "teamwork",
+    "work_rate",
+    "stamina",
+    "anticipation"
+   ],
+   "secondaires": [
+    "dribbling",
+    "long_shots",
+    "positioning",
+    "concentration",
+    "acceleration",
+    "pace",
+    "agility",
+    "balance"
+   ],
+   "poids": {},
+   "description": "Meneur qui porte le ballon et se déplace partout."
+  },
+  {
+   "id": "milieu_central",
+   "nom": "Milieu central",
+   "en": "Central Midfielder",
+   "postes": [
+    "MC"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "tackling",
+    "decisions",
+    "teamwork",
+    "work_rate"
+   ],
+   "secondaires": [
+    "technique",
+    "vision",
+    "composure",
+    "anticipation",
+    "concentration",
+    "positioning",
+    "off_the_ball",
+    "stamina"
+   ],
+   "poids": {},
+   "description": "Milieu axial polyvalent."
+  },
+  {
+   "id": "box_to_box",
+   "nom": "Milieu relayeur",
+   "en": "Box-to-Box Midfielder",
+   "postes": [
+    "MC"
+   ],
+   "cles": [
+    "passing",
+    "tackling",
+    "off_the_ball",
+    "teamwork",
+    "work_rate",
+    "stamina"
+   ],
+   "secondaires": [
+    "dribbling",
+    "finishing",
+    "first_touch",
+    "long_shots",
+    "technique",
+    "aggression",
+    "anticipation",
+    "composure",
+    "decisions",
+    "positioning",
+    "acceleration",
+    "balance",
+    "pace",
+    "strength"
+   ],
+   "poids": {},
+   "description": "Milieu d'une surface à l'autre."
+  },
+  {
+   "id": "meneur_avance",
+   "nom": "Meneur de jeu avancé",
+   "en": "Advanced Playmaker",
+   "postes": [
+    "MC",
+    "AMC",
+    "AMR",
+    "AML"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "technique",
+    "vision",
+    "composure",
+    "decisions",
+    "off_the_ball",
+    "teamwork",
+    "flair"
+   ],
+   "secondaires": [
+    "dribbling",
+    "anticipation",
+    "agility",
+    "balance",
+    "acceleration"
+   ],
+   "poids": {},
+   "description": "Créateur placé entre les lignes."
+  },
+  {
+   "id": "mezzala",
+   "nom": "Mezzala",
+   "en": "Mezzala",
+   "postes": [
+    "MC"
+   ],
+   "cles": [
+    "passing",
+    "technique",
+    "off_the_ball",
+    "decisions",
+    "work_rate",
+    "acceleration",
+    "dribbling",
+    "first_touch"
+   ],
+   "secondaires": [
+    "vision",
+    "long_shots",
+    "finishing",
+    "composure",
+    "anticipation",
+    "flair",
+    "balance",
+    "stamina",
+    "tackling"
+   ],
+   "poids": {},
+   "description": "Milieu axial qui s'excentre dans le demi-espace."
+  },
+  {
+   "id": "carrilero",
+   "nom": "Carrilero",
+   "en": "Carrilero",
+   "postes": [
+    "MC"
+   ],
+   "cles": [
+    "passing",
+    "tackling",
+    "first_touch",
+    "decisions",
+    "positioning",
+    "teamwork",
+    "stamina",
+    "work_rate"
+   ],
+   "secondaires": [
+    "technique",
+    "anticipation",
+    "composure",
+    "concentration",
+    "vision",
+    "off_the_ball"
+   ],
+   "poids": {},
+   "description": "Milieu navette qui couvre latéralement."
+  },
+  {
+   "id": "milieu_excentre",
+   "nom": "Milieu excentré",
+   "en": "Wide Midfielder",
+   "postes": [
+    "MR",
+    "ML"
+   ],
+   "cles": [
+    "passing",
+    "tackling",
+    "decisions",
+    "teamwork",
+    "work_rate",
+    "stamina",
+    "crossing"
+   ],
+   "secondaires": [
+    "first_touch",
+    "technique",
+    "anticipation",
+    "composure",
+    "concentration",
+    "positioning",
+    "off_the_ball",
+    "vision"
+   ],
+   "poids": {},
+   "description": "Milieu de couloir équilibré."
+  },
+  {
+   "id": "ailier",
+   "nom": "Ailier",
+   "en": "Winger",
+   "postes": [
+    "MR",
+    "ML",
+    "AMR",
+    "AML"
+   ],
+   "cles": [
+    "crossing",
+    "dribbling",
+    "technique",
+    "acceleration",
+    "pace",
+    "agility"
+   ],
+   "secondaires": [
+    "first_touch",
+    "passing",
+    "off_the_ball",
+    "flair",
+    "work_rate",
+    "stamina",
+    "balance",
+    "anticipation"
+   ],
+   "poids": {},
+   "description": "Ailier de débordement qui centre."
+  },
+  {
+   "id": "ailier_defensif",
+   "nom": "Ailier défensif",
+   "en": "Defensive Winger",
+   "postes": [
+    "MR",
+    "ML"
+   ],
+   "cles": [
+    "technique",
+    "anticipation",
+    "off_the_ball",
+    "positioning",
+    "teamwork",
+    "work_rate",
+    "stamina",
+    "tackling"
+   ],
+   "secondaires": [
+    "crossing",
+    "dribbling",
+    "first_touch",
+    "marking",
+    "passing",
+    "aggression",
+    "concentration",
+    "decisions",
+    "acceleration"
+   ],
+   "poids": {},
+   "description": "Ailier qui presse et défend haut."
+  },
+  {
+   "id": "ailier_interieur",
+   "nom": "Ailier intérieur",
+   "en": "Inverted Winger",
+   "postes": [
+    "MR",
+    "ML",
+    "AMR",
+    "AML"
+   ],
+   "cles": [
+    "dribbling",
+    "passing",
+    "technique",
+    "first_touch",
+    "acceleration",
+    "agility",
+    "composure",
+    "decisions"
+   ],
+   "secondaires": [
+    "crossing",
+    "long_shots",
+    "vision",
+    "off_the_ball",
+    "flair",
+    "work_rate",
+    "pace",
+    "balance",
+    "stamina",
+    "anticipation"
+   ],
+   "poids": {},
+   "description": "Ailier qui repique dans l'axe pour créer."
+  },
+  {
+   "id": "meneur_excentre",
+   "nom": "Meneur de jeu excentré",
+   "en": "Wide Playmaker",
+   "postes": [
+    "MR",
+    "ML"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "technique",
+    "vision",
+    "composure",
+    "decisions",
+    "teamwork"
+   ],
+   "secondaires": [
+    "dribbling",
+    "off_the_ball",
+    "agility",
+    "balance",
+    "flair",
+    "anticipation"
+   ],
+   "poids": {},
+   "description": "Créateur partant d'un côté."
+  },
+  {
+   "id": "milieu_offensif",
+   "nom": "Milieu offensif",
+   "en": "Attacking Midfielder",
+   "postes": [
+    "AMC"
+   ],
+   "cles": [
+    "first_touch",
+    "long_shots",
+    "passing",
+    "technique",
+    "anticipation",
+    "decisions",
+    "flair",
+    "off_the_ball"
+   ],
+   "secondaires": [
+    "dribbling",
+    "finishing",
+    "composure",
+    "vision",
+    "agility",
+    "acceleration"
+   ],
+   "poids": {},
+   "description": "Milieu avancé polyvalent."
+  },
+  {
+   "id": "attaquant_ombre",
+   "nom": "Attaquant de l'ombre",
+   "en": "Shadow Striker",
+   "postes": [
+    "AMC"
+   ],
+   "cles": [
+    "dribbling",
+    "finishing",
+    "first_touch",
+    "anticipation",
+    "composure",
+    "off_the_ball",
+    "acceleration"
+   ],
+   "secondaires": [
+    "passing",
+    "technique",
+    "concentration",
+    "decisions",
+    "work_rate",
+    "agility",
+    "balance",
+    "pace",
+    "stamina"
+   ],
+   "poids": {},
+   "description": "Milieu offensif qui joue comme un second attaquant."
+  },
+  {
+   "id": "trequartista",
+   "nom": "Trequartista",
+   "en": "Trequartista",
+   "postes": [
+    "AMC",
+    "ST"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "technique",
+    "dribbling",
+    "vision",
+    "composure",
+    "decisions",
+    "flair",
+    "off_the_ball",
+    "acceleration"
+   ],
+   "secondaires": [
+    "finishing",
+    "anticipation",
+    "agility",
+    "balance"
+   ],
+   "poids": {},
+   "description": "Numéro 10 libre de tout travail défensif."
+  },
+  {
+   "id": "enganche",
+   "nom": "Enganche",
+   "en": "Enganche",
+   "postes": [
+    "AMC"
+   ],
+   "cles": [
+    "passing",
+    "first_touch",
+    "technique",
+    "vision",
+    "composure",
+    "decisions",
+    "flair"
+   ],
+   "secondaires": [
+    "dribbling",
+    "anticipation",
+    "off_the_ball",
+    "teamwork",
+    "agility"
+   ],
+   "poids": {},
+   "description": "Meneur fixe, pivot créatif de l'équipe."
+  },
+  {
+   "id": "attaquant_interieur",
+   "nom": "Attaquant intérieur",
+   "en": "Inside Forward",
+   "postes": [
+    "AMR",
+    "AML"
+   ],
+   "cles": [
+    "dribbling",
+    "finishing",
+    "first_touch",
+    "technique",
+    "anticipation",
+    "off_the_ball",
+    "acceleration",
+    "agility"
+   ],
+   "secondaires": [
+    "long_shots",
+    "passing",
+    "composure",
+    "flair",
+    "work_rate",
+    "balance",
+    "pace",
+    "stamina"
+   ],
+   "poids": {},
+   "description": "Ailier qui repique pour marquer."
+  },
+  {
+   "id": "raumdeuter",
+   "nom": "Raumdeuter",
+   "en": "Raumdeuter",
+   "postes": [
+    "AMR",
+    "AML"
+   ],
+   "cles": [
+    "finishing",
+    "anticipation",
+    "composure",
+    "concentration",
+    "decisions",
+    "off_the_ball",
+    "balance"
+   ],
+   "secondaires": [
+    "first_touch",
+    "technique",
+    "work_rate",
+    "acceleration",
+    "stamina"
+   ],
+   "poids": {},
+   "description": "Chasseur d'espaces partant du côté."
+  },
+  {
+   "id": "pivot_excentre",
+   "nom": "Pivot excentré",
+   "en": "Wide Target Forward",
+   "postes": [
+    "AMR",
+    "AML"
+   ],
+   "cles": [
+    "heading",
+    "bravery",
+    "teamwork",
+    "jumping",
+    "strength"
+   ],
+   "secondaires": [
+    "crossing",
+    "first_touch",
+    "anticipation",
+    "off_the_ball",
+    "work_rate",
+    "balance",
+    "stamina"
+   ],
+   "poids": {},
+   "description": "Point d'appui aérien placé sur un côté."
+  },
+  {
+   "id": "attaquant_avance",
+   "nom": "Attaquant avancé",
+   "en": "Advanced Forward",
+   "postes": [
+    "ST"
+   ],
+   "cles": [
+    "dribbling",
+    "finishing",
+    "first_touch",
+    "technique",
+    "composure",
+    "off_the_ball",
+    "acceleration"
+   ],
+   "secondaires": [
+    "passing",
+    "anticipation",
+    "decisions",
+    "work_rate",
+    "agility",
+    "balance",
+    "pace",
+    "stamina"
+   ],
+   "poids": {},
+   "description": "Avant-centre qui attaque la profondeur."
+  },
+  {
+   "id": "renard",
+   "nom": "Renard des surfaces",
+   "en": "Poacher",
+   "postes": [
+    "ST"
+   ],
+   "cles": [
+    "finishing",
+    "anticipation",
+    "composure",
+    "off_the_ball"
+   ],
+   "secondaires": [
+    "first_touch",
+    "heading",
+    "technique",
+    "decisions",
+    "acceleration"
+   ],
+   "poids": {},
+   "description": "Buteur pur à la limite du hors-jeu."
+  },
+  {
+   "id": "attaquant_complet",
+   "nom": "Attaquant complet",
+   "en": "Complete Forward",
+   "postes": [
+    "ST"
+   ],
+   "cles": [
+    "dribbling",
+    "finishing",
+    "first_touch",
+    "heading",
+    "long_shots",
+    "passing",
+    "technique",
+    "anticipation",
+    "composure",
+    "decisions",
+    "off_the_ball",
+    "vision",
+    "acceleration",
+    "agility",
+    "strength"
+   ],
+   "secondaires": [
+    "teamwork",
+    "work_rate",
+    "balance",
+    "jumping",
+    "pace",
+    "stamina"
+   ],
+   "poids": {},
+   "description": "Avant-centre capable de tout faire."
+  },
+  {
+   "id": "attaquant_pivot",
+   "nom": "Attaquant pivot",
+   "en": "Target Forward",
+   "postes": [
+    "ST"
+   ],
+   "cles": [
+    "heading",
+    "bravery",
+    "teamwork",
+    "balance",
+    "jumping",
+    "strength"
+   ],
+   "secondaires": [
+    "finishing",
+    "first_touch",
+    "aggression",
+    "anticipation",
+    "composure",
+    "decisions",
+    "off_the_ball"
+   ],
+   "poids": {},
+   "description": "Point d'appui physique dos au but."
+  },
+  {
+   "id": "attaquant_retrait",
+   "nom": "Attaquant en retrait",
+   "en": "Deep-Lying Forward",
+   "postes": [
+    "ST"
+   ],
+   "cles": [
+    "first_touch",
+    "passing",
+    "technique",
+    "composure",
+    "decisions",
+    "off_the_ball",
+    "teamwork"
+   ],
+   "secondaires": [
+    "finishing",
+    "anticipation",
+    "flair",
+    "vision",
+    "balance",
+    "strength"
+   ],
+   "poids": {},
+   "description": "Attaquant qui décroche pour lier le jeu."
+  },
+  {
+   "id": "faux_neuf",
+   "nom": "Faux neuf",
+   "en": "False Nine",
+   "postes": [
+    "ST"
+   ],
+   "cles": [
+    "dribbling",
+    "first_touch",
+    "passing",
+    "technique",
+    "composure",
+    "decisions",
+    "off_the_ball",
+    "vision",
+    "acceleration",
+    "agility"
+   ],
+   "secondaires": [
+    "finishing",
+    "anticipation",
+    "flair",
+    "teamwork",
+    "balance"
+   ],
+   "poids": {},
+   "description": "Avant-centre qui décroche au milieu pour créer."
+  },
+  {
+   "id": "attaquant_pressing",
+   "nom": "Attaquant de pressing",
+   "en": "Pressing Forward",
+   "postes": [
+    "ST"
+   ],
+   "cles": [
+    "aggression",
+    "anticipation",
+    "bravery",
+    "off_the_ball",
+    "teamwork",
+    "work_rate",
+    "acceleration",
+    "pace",
+    "stamina"
+   ],
+   "secondaires": [
+    "first_touch",
+    "composure",
+    "concentration",
+    "decisions",
+    "agility",
+    "balance",
+    "strength",
+    "finishing"
+   ],
+   "poids": {},
+   "description": "Premier défenseur de l'équipe, harcèle la relance adverse."
+  }
+ ],
+ "formations": [
+  {
+   "id": "4-2-3-1",
+   "nom": "4-2-3-1",
+   "postes": [
+    {
+     "id": "GB",
+     "postes": [
+      "GK"
+     ],
+     "x": 50,
+     "y": 5
+    },
+    {
+     "id": "DG",
+     "postes": [
+      "DL",
+      "WBL"
+     ],
+     "x": 12,
+     "y": 26
+    },
+    {
+     "id": "DCG",
+     "postes": [
+      "DC"
+     ],
+     "x": 36,
+     "y": 19
+    },
+    {
+     "id": "DCD",
+     "postes": [
+      "DC"
+     ],
+     "x": 64,
+     "y": 19
+    },
+    {
+     "id": "DD",
+     "postes": [
+      "DR",
+      "WBR"
+     ],
+     "x": 88,
+     "y": 26
+    },
+    {
+     "id": "MDG",
+     "postes": [
+      "DM",
+      "MC"
+     ],
+     "x": 37,
+     "y": 41
+    },
+    {
+     "id": "MDD",
+     "postes": [
+      "DM",
+      "MC"
+     ],
+     "x": 63,
+     "y": 41
+    },
+    {
+     "id": "MOG",
+     "postes": [
+      "AML",
+      "ML"
+     ],
+     "x": 14,
+     "y": 68
+    },
+    {
+     "id": "MOC",
+     "postes": [
+      "AMC"
+     ],
+     "x": 50,
+     "y": 65
+    },
+    {
+     "id": "MOD",
+     "postes": [
+      "AMR",
+      "MR"
+     ],
+     "x": 86,
+     "y": 68
+    },
+    {
+     "id": "BU",
+     "postes": [
+      "ST"
+     ],
+     "x": 50,
+     "y": 88
+    }
+   ]
+  },
+  {
+   "id": "4-3-3",
+   "nom": "4-3-3",
+   "postes": [
+    {
+     "id": "GB",
+     "postes": [
+      "GK"
+     ],
+     "x": 50,
+     "y": 5
+    },
+    {
+     "id": "DG",
+     "postes": [
+      "DL",
+      "WBL"
+     ],
+     "x": 12,
+     "y": 26
+    },
+    {
+     "id": "DCG",
+     "postes": [
+      "DC"
+     ],
+     "x": 36,
+     "y": 19
+    },
+    {
+     "id": "DCD",
+     "postes": [
+      "DC"
+     ],
+     "x": 64,
+     "y": 19
+    },
+    {
+     "id": "DD",
+     "postes": [
+      "DR",
+      "WBR"
+     ],
+     "x": 88,
+     "y": 26
+    },
+    {
+     "id": "MDC",
+     "postes": [
+      "DM"
+     ],
+     "x": 50,
+     "y": 38
+    },
+    {
+     "id": "MCG",
+     "postes": [
+      "MC"
+     ],
+     "x": 32,
+     "y": 53
+    },
+    {
+     "id": "MCD",
+     "postes": [
+      "MC"
+     ],
+     "x": 68,
+     "y": 53
+    },
+    {
+     "id": "AG",
+     "postes": [
+      "AML",
+      "ML"
+     ],
+     "x": 14,
+     "y": 76
+    },
+    {
+     "id": "AD",
+     "postes": [
+      "AMR",
+      "MR"
+     ],
+     "x": 86,
+     "y": 76
+    },
+    {
+     "id": "BU",
+     "postes": [
+      "ST"
+     ],
+     "x": 50,
+     "y": 88
+    }
+   ]
+  },
+  {
+   "id": "4-4-2",
+   "nom": "4-4-2",
+   "postes": [
+    {
+     "id": "GB",
+     "postes": [
+      "GK"
+     ],
+     "x": 50,
+     "y": 5
+    },
+    {
+     "id": "DG",
+     "postes": [
+      "DL",
+      "WBL"
+     ],
+     "x": 12,
+     "y": 26
+    },
+    {
+     "id": "DCG",
+     "postes": [
+      "DC"
+     ],
+     "x": 36,
+     "y": 19
+    },
+    {
+     "id": "DCD",
+     "postes": [
+      "DC"
+     ],
+     "x": 64,
+     "y": 19
+    },
+    {
+     "id": "DD",
+     "postes": [
+      "DR",
+      "WBR"
+     ],
+     "x": 88,
+     "y": 26
+    },
+    {
+     "id": "MG",
+     "postes": [
+      "ML",
+      "AML"
+     ],
+     "x": 12,
+     "y": 55
+    },
+    {
+     "id": "MCG",
+     "postes": [
+      "MC"
+     ],
+     "x": 38,
+     "y": 49
+    },
+    {
+     "id": "MCD",
+     "postes": [
+      "MC"
+     ],
+     "x": 62,
+     "y": 49
+    },
+    {
+     "id": "MD",
+     "postes": [
+      "MR",
+      "AMR"
+     ],
+     "x": 88,
+     "y": 55
+    },
+    {
+     "id": "BUG",
+     "postes": [
+      "ST"
+     ],
+     "x": 38,
+     "y": 86
+    },
+    {
+     "id": "BUD",
+     "postes": [
+      "ST"
+     ],
+     "x": 62,
+     "y": 86
+    }
+   ]
+  },
+  {
+   "id": "4-1-4-1",
+   "nom": "4-1-4-1",
+   "postes": [
+    {
+     "id": "GB",
+     "postes": [
+      "GK"
+     ],
+     "x": 50,
+     "y": 5
+    },
+    {
+     "id": "DG",
+     "postes": [
+      "DL",
+      "WBL"
+     ],
+     "x": 12,
+     "y": 26
+    },
+    {
+     "id": "DCG",
+     "postes": [
+      "DC"
+     ],
+     "x": 36,
+     "y": 19
+    },
+    {
+     "id": "DCD",
+     "postes": [
+      "DC"
+     ],
+     "x": 64,
+     "y": 19
+    },
+    {
+     "id": "DD",
+     "postes": [
+      "DR",
+      "WBR"
+     ],
+     "x": 88,
+     "y": 26
+    },
+    {
+     "id": "MDC",
+     "postes": [
+      "DM"
+     ],
+     "x": 50,
+     "y": 37
+    },
+    {
+     "id": "MG",
+     "postes": [
+      "ML",
+      "AML"
+     ],
+     "x": 12,
+     "y": 60
+    },
+    {
+     "id": "MCG",
+     "postes": [
+      "MC"
+     ],
+     "x": 38,
+     "y": 56
+    },
+    {
+     "id": "MCD",
+     "postes": [
+      "MC"
+     ],
+     "x": 62,
+     "y": 56
+    },
+    {
+     "id": "MD",
+     "postes": [
+      "MR",
+      "AMR"
+     ],
+     "x": 88,
+     "y": 60
+    },
+    {
+     "id": "BU",
+     "postes": [
+      "ST"
+     ],
+     "x": 50,
+     "y": 88
+    }
+   ]
+  },
+  {
+   "id": "4-3-1-2",
+   "nom": "4-3-1-2",
+   "postes": [
+    {
+     "id": "GB",
+     "postes": [
+      "GK"
+     ],
+     "x": 50,
+     "y": 5
+    },
+    {
+     "id": "DG",
+     "postes": [
+      "DL",
+      "WBL"
+     ],
+     "x": 12,
+     "y": 26
+    },
+    {
+     "id": "DCG",
+     "postes": [
+      "DC"
+     ],
+     "x": 36,
+     "y": 19
+    },
+    {
+     "id": "DCD",
+     "postes": [
+      "DC"
+     ],
+     "x": 64,
+     "y": 19
+    },
+    {
+     "id": "DD",
+     "postes": [
+      "DR",
+      "WBR"
+     ],
+     "x": 88,
+     "y": 26
+    },
+    {
+     "id": "MCG",
+     "postes": [
+      "MC"
+     ],
+     "x": 28,
+     "y": 47
+    },
+    {
+     "id": "MC",
+     "postes": [
+      "MC",
+      "DM"
+     ],
+     "x": 50,
+     "y": 42
+    },
+    {
+     "id": "MCD",
+     "postes": [
+      "MC"
+     ],
+     "x": 72,
+     "y": 47
+    },
+    {
+     "id": "MOC",
+     "postes": [
+      "AMC"
+     ],
+     "x": 50,
+     "y": 66
+    },
+    {
+     "id": "BUG",
+     "postes": [
+      "ST"
+     ],
+     "x": 38,
+     "y": 87
+    },
+    {
+     "id": "BUD",
+     "postes": [
+      "ST"
+     ],
+     "x": 62,
+     "y": 87
+    }
+   ]
+  },
+  {
+   "id": "3-5-2",
+   "nom": "3-5-2",
+   "postes": [
+    {
+     "id": "GB",
+     "postes": [
+      "GK"
+     ],
+     "x": 50,
+     "y": 5
+    },
+    {
+     "id": "DCG",
+     "postes": [
+      "DC"
+     ],
+     "x": 26,
+     "y": 20
+    },
+    {
+     "id": "DC",
+     "postes": [
+      "DC"
+     ],
+     "x": 50,
+     "y": 17
+    },
+    {
+     "id": "DCD",
+     "postes": [
+      "DC"
+     ],
+     "x": 74,
+     "y": 20
+    },
+    {
+     "id": "LG",
+     "postes": [
+      "WBL",
+      "ML",
+      "DL"
+     ],
+     "x": 8,
+     "y": 50
+    },
+    {
+     "id": "LD",
+     "postes": [
+      "WBR",
+      "MR",
+      "DR"
+     ],
+     "x": 92,
+     "y": 50
+    },
+    {
+     "id": "MDC",
+     "postes": [
+      "DM",
+      "MC"
+     ],
+     "x": 50,
+     "y": 38
+    },
+    {
+     "id": "MCG",
+     "postes": [
+      "MC"
+     ],
+     "x": 34,
+     "y": 56
+    },
+    {
+     "id": "MCD",
+     "postes": [
+      "MC"
+     ],
+     "x": 66,
+     "y": 56
+    },
+    {
+     "id": "BUG",
+     "postes": [
+      "ST"
+     ],
+     "x": 38,
+     "y": 86
+    },
+    {
+     "id": "BUD",
+     "postes": [
+      "ST"
+     ],
+     "x": 62,
+     "y": 86
+    }
+   ]
+  },
+  {
+   "id": "5-3-2",
+   "nom": "5-3-2",
+   "postes": [
+    {
+     "id": "GB",
+     "postes": [
+      "GK"
+     ],
+     "x": 50,
+     "y": 5
+    },
+    {
+     "id": "DCG",
+     "postes": [
+      "DC"
+     ],
+     "x": 26,
+     "y": 20
+    },
+    {
+     "id": "DC",
+     "postes": [
+      "DC"
+     ],
+     "x": 50,
+     "y": 17
+    },
+    {
+     "id": "DCD",
+     "postes": [
+      "DC"
+     ],
+     "x": 74,
+     "y": 20
+    },
+    {
+     "id": "LG",
+     "postes": [
+      "WBL",
+      "DL"
+     ],
+     "x": 8,
+     "y": 34
+    },
+    {
+     "id": "LD",
+     "postes": [
+      "WBR",
+      "DR"
+     ],
+     "x": 92,
+     "y": 34
+    },
+    {
+     "id": "MCG",
+     "postes": [
+      "MC"
+     ],
+     "x": 28,
+     "y": 55
+    },
+    {
+     "id": "MC",
+     "postes": [
+      "MC",
+      "DM"
+     ],
+     "x": 50,
+     "y": 49
+    },
+    {
+     "id": "MCD",
+     "postes": [
+      "MC"
+     ],
+     "x": 72,
+     "y": 55
+    },
+    {
+     "id": "BUG",
+     "postes": [
+      "ST"
+     ],
+     "x": 38,
+     "y": 86
+    },
+    {
+     "id": "BUD",
+     "postes": [
+      "ST"
+     ],
+     "x": 62,
+     "y": 86
+    }
+   ]
+  },
+  {
+   "id": "3-4-3",
+   "nom": "3-4-3",
+   "postes": [
+    {
+     "id": "GB",
+     "postes": [
+      "GK"
+     ],
+     "x": 50,
+     "y": 5
+    },
+    {
+     "id": "DCG",
+     "postes": [
+      "DC"
+     ],
+     "x": 26,
+     "y": 20
+    },
+    {
+     "id": "DC",
+     "postes": [
+      "DC"
+     ],
+     "x": 50,
+     "y": 17
+    },
+    {
+     "id": "DCD",
+     "postes": [
+      "DC"
+     ],
+     "x": 74,
+     "y": 20
+    },
+    {
+     "id": "LG",
+     "postes": [
+      "WBL",
+      "ML",
+      "DL"
+     ],
+     "x": 8,
+     "y": 50
+    },
+    {
+     "id": "MCG",
+     "postes": [
+      "MC",
+      "DM"
+     ],
+     "x": 38,
+     "y": 46
+    },
+    {
+     "id": "MCD",
+     "postes": [
+      "MC",
+      "DM"
+     ],
+     "x": 62,
+     "y": 46
+    },
+    {
+     "id": "LD",
+     "postes": [
+      "WBR",
+      "MR",
+      "DR"
+     ],
+     "x": 92,
+     "y": 50
+    },
+    {
+     "id": "AG",
+     "postes": [
+      "AML"
+     ],
+     "x": 20,
+     "y": 77
+    },
+    {
+     "id": "AD",
+     "postes": [
+      "AMR"
+     ],
+     "x": 80,
+     "y": 77
+    },
+    {
+     "id": "BU",
+     "postes": [
+      "ST"
+     ],
+     "x": 50,
+     "y": 88
+    }
+   ]
+  }
+ ],
+ "tactiques": [
+  {
+   "id": "gegenpressing",
+   "nom": "Pressing intense (gegenpressing)",
+   "style": "pressing",
+   "description": "Récupérer le ballon haut et vite, attaquer avant que l'adversaire ne se replace.",
+   "exigences": {
+    "work_rate": 3,
+    "stamina": 3,
+    "teamwork": 2.5,
+    "aggression": 2,
+    "anticipation": 2,
+    "acceleration": 2,
+    "pace": 1.5,
+    "decisions": 1.5,
+    "natural_fitness": 1
+   },
+   "formations": [
+    "4-2-3-1",
+    "4-3-3"
+   ],
+   "mentalite": "Positive",
+   "instructions": [
+    "Pressing beaucoup plus intense",
+    "Ligne défensive plus haute",
+    "Contre-pressing",
+    "Tempo plus élevé",
+    "Relances courtes du gardien"
+   ]
+  },
+  {
+   "id": "possession",
+   "nom": "Jeu de possession",
+   "style": "possession",
+   "description": "Confisquer le ballon, faire courir l'adversaire et attendre l'ouverture.",
+   "exigences": {
+    "passing": 3,
+    "first_touch": 3,
+    "technique": 2.5,
+    "composure": 2.5,
+    "vision": 2,
+    "decisions": 2,
+    "teamwork": 2,
+    "off_the_ball": 1.5,
+    "balance": 1
+   },
+   "formations": [
+    "4-3-3",
+    "4-2-3-1",
+    "3-4-3"
+   ],
+   "mentalite": "Maîtrise",
+   "instructions": [
+    "Passes plus courtes",
+    "Repartir de derrière",
+    "Travailler le ballon jusque dans la surface",
+    "Tempo légèrement plus faible",
+    "Contre-pressing"
+   ]
+  },
+  {
+   "id": "contre_attaque",
+   "nom": "Contre-attaque rapide",
+   "style": "contre",
+   "description": "Bloc compact, puis projection très rapide dans le dos de la défense.",
+   "exigences": {
+    "pace": 3,
+    "acceleration": 3,
+    "off_the_ball": 2.5,
+    "anticipation": 2,
+    "passing": 2,
+    "positioning": 2,
+    "concentration": 2,
+    "decisions": 1.5,
+    "finishing": 1.5
+   },
+   "formations": [
+    "4-4-2",
+    "4-2-3-1",
+    "5-3-2"
+   ],
+   "mentalite": "Équilibrée",
+   "instructions": [
+    "Contre-attaquer",
+    "Passes plus directes",
+    "Ligne défensive plus basse",
+    "Bloc médian",
+    "Passes dans les espaces"
+   ]
+  },
+  {
+   "id": "jeu_direct",
+   "nom": "Jeu direct et physique",
+   "style": "direct",
+   "description": "Jeu long vers un point d'appui, deuxièmes ballons et duels aériens.",
+   "exigences": {
+    "jumping": 3,
+    "heading": 3,
+    "strength": 2.5,
+    "bravery": 2,
+    "work_rate": 2,
+    "crossing": 2,
+    "aggression": 1.5,
+    "teamwork": 1.5,
+    "long_throws": 0.5
+   },
+   "formations": [
+    "4-4-2",
+    "3-5-2"
+   ],
+   "mentalite": "Équilibrée",
+   "instructions": [
+    "Passes beaucoup plus directes",
+    "Centres aériens",
+    "Jouer plus large",
+    "Être plus physique",
+    "Longs dégagements du gardien"
+   ]
+  },
+  {
+   "id": "bloc_bas",
+   "nom": "Bloc bas solide",
+   "style": "defensif",
+   "description": "Défendre regroupé, fermer l'axe et jouer les coups de pied arrêtés et les contres.",
+   "exigences": {
+    "positioning": 3,
+    "concentration": 3,
+    "marking": 2.5,
+    "tackling": 2.5,
+    "anticipation": 2,
+    "teamwork": 2,
+    "strength": 2,
+    "heading": 2,
+    "bravery": 1.5,
+    "decisions": 1.5
+   },
+   "formations": [
+    "5-3-2",
+    "4-1-4-1"
+   ],
+   "mentalite": "Prudente",
+   "instructions": [
+    "Ligne défensive beaucoup plus basse",
+    "Bloc bas",
+    "Jouer plus étroit",
+    "Pressing moins intense",
+    "Gagner du temps (en fin de match)"
+   ]
+  },
+  {
+   "id": "jeu_ailes",
+   "nom": "Jeu sur les ailes",
+   "style": "ailes",
+   "description": "Étirer le bloc adverse, déborder et multiplier les centres.",
+   "exigences": {
+    "crossing": 3,
+    "dribbling": 2.5,
+    "pace": 2.5,
+    "acceleration": 2,
+    "heading": 2,
+    "stamina": 2,
+    "off_the_ball": 2,
+    "jumping": 1.5,
+    "work_rate": 1.5
+   },
+   "formations": [
+    "4-4-2",
+    "3-4-3",
+    "4-3-3"
+   ],
+   "mentalite": "Positive",
+   "instructions": [
+    "Jouer plus large",
+    "Concentrer le jeu sur les ailes",
+    "Dédoublements à gauche et à droite",
+    "Centres fréquents",
+    "Tempo plus élevé"
+   ]
+  }
+ ],
+ "incoherences": [
+  {
+   "id": "ligne_haute_lents",
+   "si_instructions": [
+    "ligne defensive plus haute",
+    "ligne defensive beaucoup plus haute",
+    "higher defensive line",
+    "much higher defensive line"
+   ],
+   "postes": [
+    "DC"
+   ],
+   "attributs": [
+    "pace",
+    "acceleration"
+   ],
+   "seuil": 12,
+   "sens": "<",
+   "message": "Ligne défensive haute avec des défenseurs centraux lents : chaque ballon dans le dos sera dangereux.",
+   "conseil": "Baissez la ligne d'un cran, ou alignez vos centraux les plus rapides et un gardien libéro."
+  },
+  {
+   "id": "pressing_endurance",
+   "si_instructions": [
+    "pressing plus intense",
+    "pressing beaucoup plus intense",
+    "contre-pressing",
+    "counter-press",
+    "more urgent",
+    "much more often"
+   ],
+   "postes": [
+    "*"
+   ],
+   "attributs": [
+    "stamina",
+    "work_rate"
+   ],
+   "seuil": 12,
+   "sens": "<",
+   "message": "Pressing intense avec une équipe peu endurante : le bloc va s'effondrer en seconde période.",
+   "conseil": "Réduisez l'intensité du pressing ou faites tourner davantage."
+  },
+  {
+   "id": "passes_courtes_technique",
+   "si_instructions": [
+    "passes plus courtes",
+    "passes beaucoup plus courtes",
+    "repartir de derriere",
+    "shorter passing",
+    "play out of defence"
+   ],
+   "postes": [
+    "DC",
+    "DM",
+    "MC"
+   ],
+   "attributs": [
+    "passing",
+    "first_touch",
+    "composure"
+   ],
+   "seuil": 11.5,
+   "sens": "<",
+   "message": "Relance courte avec des joueurs axiaux peu à l'aise techniquement : risque élevé de pertes de balle dans votre camp.",
+   "conseil": "Passez à une relance plus directe, ou installez un défenseur relanceur et un meneur reculé plus sûrs."
+  },
+  {
+   "id": "jeu_direct_aerien",
+   "si_instructions": [
+    "passes plus directes",
+    "passes beaucoup plus directes",
+    "centres aeriens",
+    "more direct passing",
+    "float crosses"
+   ],
+   "postes": [
+    "ST"
+   ],
+   "attributs": [
+    "jumping",
+    "heading",
+    "strength"
+   ],
+   "seuil": 11.5,
+   "sens": "<",
+   "message": "Jeu long sans point d'appui aérien devant : vos attaquants perdront la majorité des duels.",
+   "conseil": "Jouez plutôt au sol dans les espaces, ou alignez un attaquant pivot."
+  },
+  {
+   "id": "contre_lents",
+   "si_instructions": [
+    "contre-attaquer",
+    "passes dans les espaces",
+    "counter",
+    "pass into space"
+   ],
+   "postes": [
+    "ST",
+    "AMR",
+    "AML",
+    "MR",
+    "ML"
+   ],
+   "attributs": [
+    "pace",
+    "acceleration"
+   ],
+   "seuil": 12.5,
+   "sens": "<",
+   "message": "Contre-attaque avec des joueurs offensifs lents : les transitions n'aboutiront pas.",
+   "conseil": "Privilégiez un jeu plus posé ou des ailiers plus rapides."
+  },
+  {
+   "id": "centres_sans_tete",
+   "si_instructions": [
+    "centres frequents",
+    "centrer plus souvent",
+    "cross more often",
+    "hit early crosses"
+   ],
+   "postes": [
+    "ST"
+   ],
+   "attributs": [
+    "heading",
+    "jumping"
+   ],
+   "seuil": 11,
+   "sens": "<",
+   "message": "Beaucoup de centres mais des attaquants faibles de la tête.",
+   "conseil": "Demandez des centres à ras de terre ou travaillez le ballon jusque dans la surface."
+  },
+  {
+   "id": "ligne_haute_gardien",
+   "si_instructions": [
+    "ligne defensive plus haute",
+    "ligne defensive beaucoup plus haute",
+    "higher defensive line"
+   ],
+   "postes": [
+    "GK"
+   ],
+   "attributs": [
+    "rushing_out",
+    "one_on_ones",
+    "acceleration"
+   ],
+   "seuil": 11,
+   "sens": "<",
+   "message": "Ligne haute avec un gardien peu à l'aise loin de son but.",
+   "conseil": "Un gardien libéro rapide est préférable derrière une ligne haute."
+  }
+ ],
+ "niveaux_division": [
+  {
+   "mots_cles": [
+    "premier league",
+    "liga",
+    "laliga",
+    "serie a",
+    "bundesliga",
+    "ligue 1"
+   ],
+   "niveau": 14.6,
+   "libelle": "Élite européenne"
+  },
+  {
+   "mots_cles": [
+    "eredivisie",
+    "liga portugal",
+    "primeira",
+    "pro league",
+    "super lig",
+    "championship",
+    "premiership"
+   ],
+   "niveau": 13.3,
+   "libelle": "Première division intermédiaire"
+  },
+  {
+   "mots_cles": [
+    "ligue 2",
+    "serie b",
+    "2. bundesliga",
+    "segunda",
+    "laliga 2",
+    "super league",
+    "mls"
+   ],
+   "niveau": 12.3,
+   "libelle": "Deuxième division majeure"
+  },
+  {
+   "mots_cles": [
+    "league one",
+    "national",
+    "3. liga",
+    "serie c",
+    "primera rfef",
+    "challenge league"
+   ],
+   "niveau": 11.2,
+   "libelle": "Troisième niveau"
+  },
+  {
+   "mots_cles": [
+    "league two",
+    "national 2",
+    "regionalliga",
+    "serie d"
+   ],
+   "niveau": 10.2,
+   "libelle": "Quatrième niveau"
+  },
+  {
+   "mots_cles": [
+    "national league",
+    "national 3",
+    "regional",
+    "régional",
+    "vanarama"
+   ],
+   "niveau": 9.2,
+   "libelle": "Semi-professionnel"
+  }
+ ],
+ "entrainement": {
+  "passing": "Passes courtes / Jeu de passes",
+  "first_touch": "Contrôle de balle",
+  "technique": "Technique",
+  "vision": "Jeu de passes (meneur)",
+  "dribbling": "Dribbles",
+  "crossing": "Centres",
+  "finishing": "Finition",
+  "long_shots": "Tirs de loin",
+  "heading": "Jeu aérien",
+  "tackling": "Tacles / Défense individuelle",
+  "marking": "Marquage",
+  "positioning": "Placement défensif",
+  "off_the_ball": "Déplacements offensifs",
+  "composure": "Finition / situations de match",
+  "decisions": "Temps de jeu et mentor",
+  "anticipation": "Temps de jeu et mentor",
+  "concentration": "Temps de jeu et mentor",
+  "teamwork": "Mentor / cohésion",
+  "work_rate": "Mentor (travailleur)",
+  "bravery": "Mentor",
+  "aggression": "Mentor",
+  "flair": "Temps de jeu",
+  "pace": "Vivacité (sprint)",
+  "acceleration": "Vivacité (sprint)",
+  "agility": "Agilité et équilibre",
+  "balance": "Agilité et équilibre",
+  "stamina": "Endurance",
+  "strength": "Musculation",
+  "jumping": "Jeu aérien / musculation",
+  "natural_fitness": "Charge physique régulière",
+  "reflexes": "Gardien : arrêts réflexes",
+  "handling": "Gardien : prises de balle",
+  "one_on_ones": "Gardien : un contre un",
+  "aerial_reach": "Gardien : jeu aérien",
+  "command_of_area": "Gardien : jeu aérien",
+  "kicking": "Gardien : jeu au pied",
+  "throwing": "Gardien : relance",
+  "rushing_out": "Gardien : un contre un",
+  "communication": "Gardien : tactique"
+ }
+}
