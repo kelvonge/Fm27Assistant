@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>FM Assistant 27 – Overlay</title>
+<style>
+  :root { --accent: #2fd08c; }
+  html, body { margin: 0; height: 100%; background: #0b0f14; color: #e9eef4; font: 13px/1.4 "Segoe UI Variable Text", "Segoe UI", system-ui, sans-serif; overflow: hidden; user-select: none; }
+  .wrap { height: 100%; display: flex; flex-direction: column; border: 1px solid rgba(255,255,255,.12); border-left: 3px solid var(--accent); box-sizing: border-box; }
+  header { display: flex; align-items: center; gap: 8px; padding: 7px 10px; background: rgba(255,255,255,.04); cursor: move; }
+  header b { font-size: 12px; letter-spacing: .3px; } header span { color: #8b98a9; font-size: 11px; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: #5d6b7c; flex: none; } .dot.on { background: #2fd08c; } .dot.wait { background: #f2c14e; }
+  button { background: none; border: 0; color: #8b98a9; cursor: pointer; font-size: 14px; padding: 0 4px; } button:hover { color: #fff; }
+  ul { margin: 0; padding: 8px 12px 10px 26px; overflow-y: auto; flex: 1; } li { margin: 0 0 7px; } li::marker { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="pywebview-drag-region"><i class="dot" id="dot"></i><b>FM Assistant</b><span id="screen"></span><button id="close" title="Fermer l'overlay">✕</button></header>
+  <ul id="tips"><li>Chargement…</li></ul>
+</div>
+<script>
+async function tick() {
+  try {
+    const d = await (await fetch('/api/overlay')).json();
+    if (d.accent) document.documentElement.style.setProperty('--accent', d.accent);
+    document.getElementById('dot').className = 'dot ' + (d.etat === 'actif' ? 'on' : d.etat === 'arriere_plan' ? 'wait' : '');
+    document.getElementById('screen').textContent = d.ecran ? 'Écran lu : ' + d.ecran : d.statut;
+    const ul = document.getElementById('tips'); ul.replaceChildren(...d.conseils.map(t => { const li = document.createElement('li'); li.textContent = t; return li; }));
+  } catch (e) { document.getElementById('screen').textContent = 'Assistant injoignable'; }
+}
+document.getElementById('close').onclick = () => fetch('/api/overlay/toggle', { method: 'POST' }).catch(() => window.close());
+tick(); setInterval(tick, 2500);
+</script>
+</body>
+</html>

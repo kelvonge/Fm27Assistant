@@ -6,6 +6,7 @@ dessous du seuil de la base de connaissances, la note est marquée non fiable.
 """
 from __future__ import annotations
 
+from ..textutil import fr
 from .knowledge import AXES_GARDIEN, AXES_JOUEUR, KB
 
 
@@ -75,10 +76,10 @@ def explain(player: dict, score: dict, alt: dict | None = None) -> str:
     """« X convient mieux en Meneur de jeu reculé car Passes 16, Vision du jeu 15, Sang-froid 14 »."""
     name = player.get("name", "Ce joueur")
     forts = ", ".join(f"{f['nom']} {f['val']}" for f in score["forts"])
-    if alt and alt["role"] != score["role"]:
-        txt = f"{name} convient mieux en {score['nom']} ({score['note']:.1f}) qu'en {alt['nom']} ({alt['note']:.1f}) car {forts}"
+    if alt and alt["role"] != score["role"] and score["note"] - alt["note"] >= 0.3:
+        txt = f"{name} convient mieux en {score['nom']} ({fr(score['note'])}) qu'en {alt['nom']} ({fr(alt['note'])}) car {forts}"
     else:
-        txt = f"{name} est le plus à l'aise en {score['nom']} ({score['note']:.1f}/20) car {forts}"
+        txt = f"{name} est le plus à l'aise en {score['nom']} ({fr(score['note'])}/20) car {forts}"
     low = [f for f in score["faibles"] if f["val"] <= score["note"] - 2]
     if low:
         txt += " ; point faible pour ce rôle : " + ", ".join(f"{f['nom']} {f['val']}" for f in low)

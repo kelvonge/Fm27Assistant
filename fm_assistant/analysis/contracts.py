@@ -4,7 +4,7 @@ from __future__ import annotations
 from datetime import date
 from statistics import median
 
-from ..textutil import fmt_money
+from ..textutil import fmt_money, fr
 from .knowledge import KB
 from .squad import depth, reliable_note
 
@@ -49,11 +49,11 @@ def contracts(enriched: list[dict], kb: KB, ref: float | None, game_date: str | 
                 row["raison"] = f"Contrat qui expire {when}. Attributs non lus : impossible de juger son importance."
             else:
                 row["action"] = "vendre" if ml > 6 else "laisser partir"
-                row["raison"] = f"Contrat qui expire {when}. Joueur de complément ({note:.1f}) : " + ("vendez-le maintenant pour récupérer une indemnité." if ml > 6 else "ne prolongez que s'il accepte un salaire réduit.")
+                row["raison"] = f"Contrat qui expire {when}. Joueur de complément ({fr(note)}) : " + ("vendez-le maintenant pour récupérer une indemnité." if ml > 6 else "ne prolongez que s'il accepte un salaire réduit.")
         reasons = []
         if note is not None and ref is not None:
             if rank >= 3 and note < ref - 2:
-                reasons.append(f"{rank if rank < 99 else 'dernier'}e choix à son poste avec {note:.1f} (onze type : {ref:.1f})")
+                reasons.append(f"{rank if rank < 99 else 'dernier'}e choix à son poste avec {fr(note)} (onze type : {fr(ref)})")
             if med_wage and p.get("wage") and p["wage"] >= 2 * med_wage and note < ref - 1:
                 reasons.append(f"salaire élevé ({fmt_money(p['wage'])}/sem., médiane {fmt_money(med_wage)}) pour un non-titulaire")
             if age is not None and age >= 31 and note < ref and p.get("value"):

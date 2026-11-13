@@ -172,8 +172,9 @@ class Database:
                 pid, created = cur.lastrowid, True
             else:
                 pid, created = existing["id"], False
-                # On garde le nom le plus complet (« Kylian Mbappé » plutôt que « K. Mbappé »)
-                best_name = name if len(name_key(name)) > len(name_key(existing["name"])) else existing["name"]
+                # On garde le nom le plus complet (« Kylian Mbappé » plutôt que « K. Mbappé ») ;
+                # à longueur égale, la lecture la plus récente l'emporte (corrections de calibrage)
+                best_name = name if len(name_key(name)) >= len(name_key(existing["name"])) else existing["name"]
                 new_scope = existing["scope"]
                 if scope == "effectif" or (scope and existing["scope"] != "effectif"):
                     new_scope = scope
@@ -249,7 +250,7 @@ class Database:
             self._conn.execute(
                 "INSERT INTO documents(kind,game_date,data,updated_at) VALUES(?,?,?,?)"
                 " ON CONFLICT(kind,game_date) DO UPDATE SET data=excluded.data, updated_at=excluded.updated_at",
-                (kind, game_date or "", json.dumps(data, ensure_ascii=False), _now()),
+                (kind, game_date or "", json.dumps(data, ensure_ascii=False), datetime.now().isoformat(timespec="microseconds")),
             )
             self._conn.commit()
 
@@ -260,7 +261,7 @@ class Database:
             q += " AND game_date=?"
             args.append(game_date)
         with self._lock:
-            row = self._conn.execute(q + " ORDER BY updated_at DESC LIMIT 1", args).fetchone()
+            row = self._conn.execute(q + " ORDER BY updated_at DESC, game_date DESC LIMIT 1", args).fetchone()
         if not row:
             return None
         return {"data": json.loads(row["data"]), "game_date": row["game_date"] or None, "updated_at": row["updated_at"]}

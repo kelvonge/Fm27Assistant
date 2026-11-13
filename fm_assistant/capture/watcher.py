@@ -170,6 +170,8 @@ class Watcher:
         etat = st["etat"]
         if etat == "indisponible":
             msg = st["erreur"] or "Lecture en direct indisponible"
+            if st["dernier_resume"]:
+                msg = f"Dernière capture importée : {st['dernier_resume']} – (lecture en direct indisponible sur ce système)"
         elif etat == "absent":
             msg = "FM 27 non détecté – lancez le jeu, la lecture démarrera toute seule"
         elif etat == "pause":

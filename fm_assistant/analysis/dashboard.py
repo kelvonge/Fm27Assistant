@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from statistics import mean
 
-from ..textutil import fmt_money, norm
+from ..textutil import fmt_money, norm, fr
 from .contracts import contracts
 from .knowledge import KB
 from .squad import depth, division_benchmark, strengths
@@ -35,7 +35,7 @@ def dashboard(enriched: list[dict], ref: float | None, kb: KB, settings: dict, g
             v = "en dessous du niveau habituel"
         else:
             v = "nettement en dessous du niveau habituel"
-        level["verdict"] = f"Onze type à {ref:.1f}/20, {v} de la division (repère estimé : {bench['niveau']:.1f})."
+        level["verdict"] = f"Onze type à {fr(ref)}/20, {v} de la division (repère estimé : {fr(bench['niveau'])})."
         level["ecart"] = round(diff, 2)
     my_row = None
     if table and settings.get("club"):

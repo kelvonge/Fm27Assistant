@@ -4,7 +4,7 @@ from __future__ import annotations
 import math
 from statistics import mean
 
-from ..textutil import fmt_money
+from ..textutil import fmt_money, fr
 from .knowledge import KB
 from .ratings import explain, roles_for_player, score_role, stars_estimate
 from .squad import depth
@@ -104,7 +104,7 @@ def search(pool: list[dict], crit: dict, kb: KB, ref: float | None) -> dict:
             expected = model[0] + model[1] * math.log10(max(r["value"], 1000))
             r["qualite_prix"] = round(r["note"] - expected, 2)
             if r["qualite_prix"] >= 0.8:
-                r["explication"] += f" Bonne affaire : +{r['qualite_prix']:.1f} pt par rapport aux joueurs lus du même prix ({fmt_money(r['value'])})."
+                r["explication"] += f" Bonne affaire : +{fr(r['qualite_prix'])} pt par rapport aux joueurs lus du même prix ({fmt_money(r['value'])})."
         elif r["note"] is not None and r["value"] == 0:
             r["qualite_prix"] = 3.0  # joueur libre
     results.sort(key=lambda r: (r["note"] is None, -(r["note"] or 0)))
@@ -132,7 +132,7 @@ def gems(pool: list[dict], kb: KB, ref: float | None) -> list[dict]:
         if pot is not None and cur is not None and pot - cur >= 1.5:
             reasons.append(f"marge de progression de {pot - cur:g}★")
         if note is not None and ref is not None and note >= ref - 1.5:
-            reasons.append(f"déjà à {note:.1f}/20 à {age} ans (onze type : {ref:.1f})")
+            reasons.append(f"déjà à {fr(note)}/20 à {age} ans (onze type : {fr(ref)})")
         if not reasons:
             continue
         out.append({"id": p["id"], "name": p["name"], "age": age, "club": p.get("club"), "value": p.get("value"),

@@ -1,0 +1,9 @@
+# FM Assistant 27 — dépendances (toutes gratuites, aucune clé API)
+fastapi>=0.110
+uvicorn>=0.29
+numpy>=1.26
+opencv-python-headless>=4.9
+rapidocr>=3.0          # OCR local, modèles inclus dans le paquet (fonctionne hors ligne)
+onnxruntime>=1.17      # moteur d'exécution de RapidOCR (processeur, pas besoin de carte graphique)
+mss>=9.0               # capture d'écran
+pywebview>=5.0         # fenêtre desktop

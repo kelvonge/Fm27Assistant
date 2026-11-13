@@ -1,6 +1,7 @@
 """Développement des jeunes : plan de progression et prêts conseillés."""
 from __future__ import annotations
 
+from ..textutil import fr
 from .knowledge import KB
 from .ratings import roles_for_player
 from .squad import depth
@@ -44,16 +45,16 @@ def youth_plan(enriched: list[dict], kb: KB, ref: float | None, max_age: int = 2
             item["decision"], item["raison"] = "à évaluer", "Attributs non lus : ouvrez son profil dans FM pour obtenir un plan."
         elif gap <= 1.0:
             item["decision"] = "intégrer"
-            item["raison"] = f"Déjà au niveau du groupe ({note:.1f} pour un onze type à {ref:.1f}) : donnez-lui du temps de jeu en équipe première."
+            item["raison"] = f"Déjà au niveau du groupe ({fr(note)} pour un onze type à {fr(ref)}) : donnez-lui du temps de jeu en équipe première."
         elif age <= 17:
             item["decision"] = "garder"
             item["raison"] = f"Trop jeune pour un prêt utile ({age} ans) : équipe de jeunes, mentor et entraînement individuel."
         elif gap <= 2.5 and rank <= 2:
             item["decision"] = "rotation"
-            item["raison"] = f"Doublure crédible ({note:.1f}) : remplaçant et matchs de coupe, plutôt qu'un prêt."
+            item["raison"] = f"Doublure crédible ({fr(note)}) : remplaçant et matchs de coupe, plutôt qu'un prêt."
         else:
             item["decision"] = "prêt"
-            item["raison"] = (f"À {note:.1f} pour un onze type à {ref:.1f} et {rank if rank < 99 else 'loin'}e choix à son poste, "
+            item["raison"] = (f"À {fr(note)} pour un onze type à {fr(ref)} et {rank if rank < 99 else 'loin'}e choix à son poste, "
                               "il ne jouera pas ici : un prêt avec statut de titulaire accélérera sa progression.")
             if pot is not None and pot < 3:
                 item["raison"] += f" Potentiel limité ({pot:g}★) : envisagez une vente avec pourcentage à la revente."

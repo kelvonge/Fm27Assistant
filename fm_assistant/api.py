@@ -18,7 +18,7 @@ from .analysis.knowledge import KB, load_kb
 from .capture.calibration import Calibration
 from .capture.watcher import Watcher
 from .db import Database
-from .textutil import norm
+from .textutil import name_key, norm
 
 # Windows associe parfois .js à text/plain dans le registre : les modules ES seraient refusés
 mimetypes.add_type("application/javascript", ".js")
@@ -339,6 +339,15 @@ def create_app(state: State | None = None) -> FastAPI:
             st.calib.set_column(body["texte"], body.get("champ") or None)
         elif kind == "texte":
             st.calib.add_replacement(body["lu"], body.get("correct", ""))
+            # La fiche créée sous le nom mal lu est renommée (ou supprimée si la bonne existe déjà)
+            wrong, right = body["lu"], body.get("correct", "")
+            if right and name_key(wrong) != name_key(right):
+                bad = next((p for p in st.db.players() if name_key(p["name"]) == name_key(wrong)), None)
+                good = next((p for p in st.db.players() if name_key(p["name"]) == name_key(right)), None)
+                if bad and good:
+                    st.db.delete_player(bad["id"])
+                elif bad:
+                    st.db.patch_player(bad["id"], {"name": right})
         else:
             raise HTTPException(400, "Type de correction inconnu")
         return st.calib.data

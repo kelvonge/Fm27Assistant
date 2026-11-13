@@ -278,3 +278,8 @@ def ordinal(n) -> str:
     if n is None:
         return "?"
     return f"{n}er" if n == 1 else f"{n}e"
+
+
+def fr(x, decimals: int = 1) -> str:
+    """Nombre au format français (virgule décimale) pour les phrases d'explication."""
+    return f"{x:.{decimals}f}".replace(".", ",")

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FM Assistant 27</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+<div id="app">
+  <aside id="sidebar">
+    <div class="brand">
+      <div class="brand-mark" id="brand-mark">FM</div>
+      <div><div class="brand-name">FM Assistant <span>27</span></div><div class="brand-club" id="brand-club">Carrière</div></div>
+    </div>
+    <nav id="nav"></nav>
+    <button class="live-pill" id="live-pill" title="Lecture en direct">
+      <span class="dot" id="live-dot"></span>
+      <span class="live-text" id="live-text">Démarrage…</span>
+    </button>
+  </aside>
+  <div id="main">
+    <header id="topbar">
+      <h1 id="page-title"></h1>
+      <div class="search-wrap">
+        <input id="search" type="search" placeholder="Rechercher un joueur, un rôle, un défi…  (Ctrl+K)" autocomplete="off">
+        <div id="search-results" class="search-results" hidden></div>
+      </div>
+      <div class="top-actions">
+        <span class="chip" id="game-date" hidden></span>
+        <button class="btn ghost" id="btn-overlay" title="Afficher une petite fenêtre de conseils par-dessus FM" hidden>Overlay</button>
+        <button class="btn ghost icon" id="btn-theme" title="Thème clair / sombre">◐</button>
+      </div>
+    </header>
+    <main id="view"></main>
+  </div>
+</div>
+<div id="drawer" class="drawer" hidden></div>
+<div id="modal" class="modal" hidden></div>
+<div id="toasts"></div>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

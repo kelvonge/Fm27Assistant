@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from statistics import mean
 
-from ..textutil import name_key, names_compatible, norm, ordinal
+from ..textutil import name_key, names_compatible, norm, ordinal, fr
 from .knowledge import KB
 from .ratings import score_role
 from .squad import reliable_note, team_attributes
@@ -155,10 +155,10 @@ def suggest_tactics(enriched: list[dict], kb: KB, style: str = "", limit: int = 
             continue
         wanted = bool(style) and (norm(style) in norm(t["nom"]) or norm(t.get("style", "")) in norm(style))
         total = (fit["score"] - overall) * 1.0 + (best[0] - overall) * 0.6 + (0.4 if wanted else 0)
-        atouts = ", ".join(f"{a['nom']} {a['val']:.1f}" for a in fit["atouts"])
-        limites = ", ".join(f"{a['nom']} {a['val']:.1f}" for a in fit["limites"])
-        why = (f"Votre équipe a le profil pour ce style : {atouts} en moyenne (moyenne générale {overall:.1f}). "
-               f"Points à surveiller : {limites}. Le {best[1]['formation']} donne un onze noté {best[1]['note']:.1f}/20.")
+        atouts = ", ".join(f"{a['nom']} {fr(a['val'])}" for a in fit["atouts"])
+        limites = ", ".join(f"{a['nom']} {fr(a['val'])}" for a in fit["limites"])
+        why = (f"Votre équipe a le profil pour ce style : {atouts} en moyenne (moyenne générale {fr(overall)}). "
+               f"Points à surveiller : {limites}. Le {best[1]['formation']} donne un onze noté {fr(best[1]['note'])}/20.")
         if wanted:
             why += " Correspond au style de jeu que vous avez indiqué."
         out.append({"id": t["id"], "nom": t["nom"], "description": t["description"], "mentalite": t.get("mentalite"),
@@ -208,7 +208,7 @@ def check_tactic(tactic: dict | None, enriched: list[dict], kb: KB) -> dict:
         if alt and alt["note"] - cur["note"] >= 0.8:
             forts = ", ".join(f"{f['nom']} {f['val']}" for f in alt["forts"])
             entry.update(statut="mieux", alternative=alt["nom"], gain=round(alt["note"] - cur["note"], 1),
-                         message=f"{p['name']} serait meilleur en {alt['nom']} ({alt['note']:.1f} contre {cur['note']:.1f}) car {forts}.")
+                         message=f"{p['name']} serait meilleur en {alt['nom']} ({fr(alt['note'])} contre {fr(cur['note'])}) car {forts}.")
         if not set(role["postes"]) & set(p.get("pos") or []) and p.get("pos"):
             entry["statut"] = "hors_poste"
             entry["message"] = f"{p['name']} n'a aucun poste naturel compatible avec le rôle {role['nom']}." + (" " + entry["message"] if entry["message"] else "")
@@ -226,8 +226,8 @@ def check_tactic(tactic: dict | None, enriched: list[dict], kb: KB) -> dict:
             group = [p for p in enriched if p.get("attributes") and ("*" in wanted and "GK" not in (p.get("pos") or []) or set(wanted) & set(p.get("pos") or []))]
             group.sort(key=lambda p: -(reliable_note(p) or 0))
             group = group[: 10 if "*" in wanted else 3]
-        vals = [mean(p["attributes"][a] for a in rule["attributs"] if a in p["attributes"]) for p in group
-                if any(a in p["attributes"] for a in rule["attributs"])]
+        group = [p for p in group if any(a in (p.get("attributes") or {}) for a in rule["attributs"])]
+        vals = [mean(p["attributes"][a] for a in rule["attributs"] if a in p["attributes"]) for p in group]
         if not vals:
             continue
         avg = mean(vals)
@@ -236,7 +236,7 @@ def check_tactic(tactic: dict | None, enriched: list[dict], kb: KB) -> dict:
             names = ", ".join(p["name"] for p in group[:4])
             attrs = " / ".join(kb.attr_name(a) for a in rule["attributs"])
             alerts.append({"id": rule["id"], "message": rule["message"], "conseil": rule.get("conseil"),
-                           "detail": f"{attrs} : {avg:.1f} en moyenne (seuil {rule['seuil']}) — {names}.",
+                           "detail": f"{attrs} : {fr(avg)} en moyenne (seuil {rule['seuil']}) — {names}.",
                            "base": "titulaires lus sur l'écran Tactique" if lineup else "meilleurs joueurs de l'effectif (onze non lu)"})
     return {"lue": True, "formation": tactic.get("formation"), "mentalite": tactic.get("mentalite"),
             "instructions": tactic.get("instructions") or [], "alertes": alerts, "roles": roles, "message": None}
@@ -276,11 +276,11 @@ def prematch(fixtures: list[dict] | None, table: list[dict] | None, others: list
         if pl >= 5 and theirs.get("goals_for") is not None and theirs.get("goals_against") is not None:
             gf, ga = theirs["goals_for"] / pl, theirs["goals_against"] / pl
             if gf >= 1.8:
-                out["conseils"].append({"titre": "Attaque prolifique", "texte": f"{opp} marque {gf:.1f} but(s) par match : évitez la ligne très haute et gardez un milieu de couverture."})
+                out["conseils"].append({"titre": "Attaque prolifique", "texte": f"{opp} marque {fr(gf)} but(s) par match : évitez la ligne très haute et gardez un milieu de couverture."})
             if ga >= 1.6:
-                out["conseils"].append({"titre": "Défense perméable", "texte": f"{opp} encaisse {ga:.1f} but(s) par match : pressez haut et multipliez les centres et les tirs."})
+                out["conseils"].append({"titre": "Défense perméable", "texte": f"{opp} encaisse {fr(ga)} but(s) par match : pressez haut et multipliez les centres et les tirs."})
             elif ga <= 0.8:
-                out["conseils"].append({"titre": "Défense solide", "texte": f"{opp} n'encaisse que {ga:.1f} but(s) par match : soignez les coups de pied arrêtés et travaillez le ballon jusque dans la surface."})
+                out["conseils"].append({"titre": "Défense solide", "texte": f"{opp} n'encaisse que {fr(ga)} but(s) par match : soignez les coups de pied arrêtés et travaillez le ballon jusque dans la surface."})
     squad = [p for p in others if p.get("club") and (norm(p["club"]) == norm(opp) or norm(opp) in norm(p["club"])) and p.get("attributes")]
     if len(squad) < 5:
         out["manques"].append(f"Joueurs de {opp} non lus : ouvrez son effectif et quelques profils dans FM pour des conseils sur ses points forts.")
@@ -293,13 +293,13 @@ def prematch(fixtures: list[dict] | None, table: list[dict] | None, others: list
         if fw and my_cb:
             a, b = avg(fw, ["pace", "acceleration"]), avg(my_cb, ["pace", "acceleration"])
             if a and b and a - b >= 1.5:
-                out["conseils"].append({"titre": "Attaquants rapides en face", "texte": f"Leurs attaquants sont plus rapides ({a:.1f}) que vos centraux ({b:.1f}) : baissez la ligne défensive et évitez le hors-jeu."})
+                out["conseils"].append({"titre": "Attaquants rapides en face", "texte": f"Leurs attaquants sont plus rapides ({fr(a)}) que vos centraux ({fr(b)}) : baissez la ligne défensive et évitez le hors-jeu."})
         if cb and my_fw:
             a, b = avg(cb, ["pace", "acceleration"]), avg(my_fw, ["pace", "acceleration"])
             if a and b and b - a >= 1.5:
-                out["conseils"].append({"titre": "Défense adverse lente", "texte": f"Leurs centraux sont lents ({a:.1f}) face à vos attaquants ({b:.1f}) : jouez dans les espaces, dans le dos de la défense."})
+                out["conseils"].append({"titre": "Défense adverse lente", "texte": f"Leurs centraux sont lents ({fr(a)}) face à vos attaquants ({fr(b)}) : jouez dans les espaces, dans le dos de la défense."})
             a, b = avg(cb, ["jumping", "heading"]), avg(my_fw, ["jumping", "heading"])
             if a and b and a - b >= 2:
-                out["conseils"].append({"titre": "Dominés dans les airs", "texte": f"Leurs centraux dominent de la tête ({a:.1f} contre {b:.1f}) : privilégiez les centres à ras de terre et le jeu au sol."})
+                out["conseils"].append({"titre": "Dominés dans les airs", "texte": f"Leurs centraux dominent de la tête ({fr(a)} contre {fr(b)}) : privilégiez les centres à ras de terre et le jeu au sol."})
         out["effectif_adverse_lu"] = len(squad)
     return out

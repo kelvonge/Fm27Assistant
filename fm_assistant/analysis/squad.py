@@ -3,6 +3,7 @@ from __future__ import annotations
 
 from statistics import mean
 
+from ..textutil import fr
 from .knowledge import AXES_JOUEUR, KB
 from .ratings import best_role_at, enrich
 
@@ -62,7 +63,7 @@ def depth(enriched: list[dict], kb: KB, ref: float | None) -> list[dict]:
             elif len(good) == 1:
                 status, msg = "juste", "Un titulaire au niveau mais aucune doublure."
             else:
-                status, msg = "faible", f"Meilleur joueur à {rated[0]['note']:.1f}, sous le niveau du onze type ({ref:.1f})."
+                status, msg = "faible", f"Meilleur joueur à {fr(rated[0]['note'])}, sous le niveau du onze type ({fr(ref)})."
         out.append({"poste": pos, "label": kb.pos_label(pos), "nom": kb.pos_names.get(pos, pos),
                     "joueurs": cands, "statut": status, "message": msg, "principal": pos in CORE_POS})
     return out

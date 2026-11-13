@@ -4,6 +4,7 @@ from __future__ import annotations
 import argparse
 import logging
 import socket
+import sys
 import threading
 import time
 import webbrowser
@@ -44,6 +45,11 @@ def main() -> None:
     parser.add_argument("--sans-capture", action="store_true", help="ne démarre pas la lecture en direct")
     parser.add_argument("--sans-fenetre", action="store_true", help="serveur seul (tests)")
     args = parser.parse_args()
+    if sys.stdout is None or sys.stderr is None:
+        # .exe sans console : la sortie standard n'existe pas, on écrit dans un journal
+        from .config import data_dir
+
+        sys.stdout = sys.stderr = open(data_dir() / "journal.log", "a", encoding="utf-8", buffering=1)
     logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s %(message)s")
     window.set_dpi_aware()  # avant toute fenêtre, pour des coordonnées en pixels réels
 
@@ -58,7 +64,7 @@ def main() -> None:
     app = create_app(state)
     port = _free_port(args.port)
     url = f"http://127.0.0.1:{port}"
-    server = uvicorn.Server(uvicorn.Config(app, host="127.0.0.1", port=port, log_level="warning"))
+    server = uvicorn.Server(uvicorn.Config(app, host="127.0.0.1", port=port, log_level="warning", log_config=None))
     thread = threading.Thread(target=server.run, name="fma-server", daemon=True)
     thread.start()
     if not _wait_ready(port):

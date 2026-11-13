@@ -1,0 +1,9 @@
+# Facultatif : OCR intégré à Windows 10/11, utilisé en secours si RapidOCR ne s'installe pas.
+# Nécessite le pack de langue « Français » (ou « English ») avec reconnaissance de texte dans Windows.
+winrt-runtime
+winrt-Windows.Foundation
+winrt-Windows.Foundation.Collections
+winrt-Windows.Globalization
+winrt-Windows.Graphics.Imaging
+winrt-Windows.Media.Ocr
+winrt-Windows.Storage.Streams
